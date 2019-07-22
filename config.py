@@ -1,0 +1,1 @@
+MYVAR = 'test_var'
