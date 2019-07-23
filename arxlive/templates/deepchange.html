@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Welcome to arXlive</h2>
+    <p>In the past two decades, it has become the norm for entirely new industries to
+    arise in just a few years. Traditional means of monitoring industrial and academic
+    activity are relatively slow, and this leads to laggy policy decisions - which means
+    that the full benefits of these industries will not be distributed evenly. In
+    response to this, we have developed <strong>arXlive</strong>.</p>
+    <img class="img-responsive" src='{{ bucket }}figure_1.png' alt='figure_1'><br>
+    <h5>Figure 1: Distribution of Deep Learning/non Deep Learning papers by country (top
+        20 countries)</h5>
+    <img class="img-responsive" src='{{ bucket }}figure_2.png' alt='figure_2'><br>
+    <h5>Figure 2: Distribution of Deep Learning/non Deep Learning papers by city (top
+        20 cities)</h5>
+    <img class="img-responsive" src='{{ bucket }}figure_3.png' alt='figure_3'><br>
+    <h5>Figure 3: % of Deep Learning papers published, by year</h5>
+    <img class="img-responsive" src='{{ bucket }}figure_4.png' alt='figure_4'><br>
+    <h5>Figure 4: Shares of Deep Learning activity by subject, before and after
+        2012</h5>
+    <img class="img-responsive" src='{{ bucket }}figure_5.png' alt='figure_5'><br>
+    <h5>Figure 5: Comparison of changes in RCA between the period before 2012 and
+        afterwards, focusing on the top 20 countries by total level of DL activity.</h5>
+
+    <p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
+    <p>Link to methods and FAQ (to be added)</p>
+</div>
+{% endblock content %}

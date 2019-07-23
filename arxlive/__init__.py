@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_bootstrap import Bootstrap
 import os
 
 from arxlive import views
@@ -7,6 +8,7 @@ from arxlive import views
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
+    Bootstrap(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -22,7 +24,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # disable CDN support for security
+    app.config['BOOTSTRAP_SERVE_LOCAL'] = True
+
     # routes
-    app.add_url_rule('/', 'hello', views.hello)
+    app.add_url_rule('/', 'deepchange', views.deepchange)
+    app.add_url_rule('/deepchange/', 'deepchange', views.deepchange)
 
     return app
