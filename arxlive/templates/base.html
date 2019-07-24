@@ -1,4 +1,11 @@
 {% extends "bootstrap/base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon-96x96.png') }}">
+{% endblock head %}
+
 {% block title %}arXlive{% endblock title %}
 
 {% block navbar %}
@@ -28,7 +35,5 @@
 
 {% block styles %}
 {{ super() }}
-<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
-<link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon-96x96.png') }}">
+<link rel="stylesheet" href="{{url_for('.static', filename='deepchange.css')}}">
 {% endblock styles %}
