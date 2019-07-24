@@ -11,7 +11,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('deepchange') }}">arXlive</a>
+                <a class="navbar-brand" href="{{ url_for('deepchange') }}">
+                    <img alt="arXlive" src="{{ url_for('static', filename='arxlive-logo-20h.png') }}">
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -23,3 +25,10 @@
 {% endblock navbar %}
 
 {% block content %}{% endblock content %}
+
+{% block styles %}
+{{ super() }}
+<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon-96x96.png') }}">
+{% endblock styles %}
