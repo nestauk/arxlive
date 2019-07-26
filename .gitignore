@@ -109,3 +109,6 @@ venv.bak/
 *bin
 *npy
 *pickle
+
+# arxlive search build
+arxlive/search/build/
