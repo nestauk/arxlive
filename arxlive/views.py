@@ -6,3 +6,7 @@ def deepchange():
     now = datetime.now()
     bucket = current_app.config['CONTENT_BUCKET']
     return render_template('deepchange.html', now=now, bucket=bucket)
+
+
+def hierarxy():
+    return render_template('arxlive-search.html')

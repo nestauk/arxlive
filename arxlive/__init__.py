@@ -4,11 +4,12 @@ import os
 
 from arxlive import views
 
+bootstrap = Bootstrap()
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
-    Bootstrap(app)
+    bootstrap.init_app(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -30,5 +31,6 @@ def create_app(test_config=None):
     # routes
     app.add_url_rule('/', 'deepchange', views.deepchange)
     app.add_url_rule('/deepchange/', 'deepchange', views.deepchange)
+    app.add_url_rule('/hierarxy/', 'hierarxy', views.hierarxy)
 
     return app

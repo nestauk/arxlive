@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}arXlive: hierarXy{% endblock title %}
+{% block content %}
+<div class="container">
+    <div id="root">
+    </div>
+</div>
+{% endblock content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='arxlive-search.css')}}">
+{{ super() }}
+{% endblock styles %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='arxlive-search.js') }}">
+{{ super() }}
+{% endblock scripts %}
