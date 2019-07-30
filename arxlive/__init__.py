@@ -1,15 +1,19 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_s3 import FlaskS3
 import os
 
 from arxlive import views
 
 bootstrap = Bootstrap()
+s3 = FlaskS3()
+
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
     bootstrap.init_app(app)
+    s3.init_app(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing

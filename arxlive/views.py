@@ -1,11 +1,8 @@
-from datetime import datetime
-from flask import render_template, current_app
+from flask import render_template
 
 
 def deepchange():
-    now = datetime.now()
-    bucket = current_app.config['CONTENT_BUCKET']
-    return render_template('deepchange.html', now=now, bucket=bucket)
+    return render_template('deepchange.html')
 
 
 def hierarxy():
