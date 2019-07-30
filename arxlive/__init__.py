@@ -36,5 +36,7 @@ def create_app(test_config=None):
     app.add_url_rule('/', 'deepchange', views.deepchange)
     app.add_url_rule('/deepchange/', 'deepchange', views.deepchange)
     app.add_url_rule('/hierarxy/', 'hierarxy', views.hierarxy)
+    app.register_error_handler(404, views.page_not_found)
+    app.register_error_handler(500, views.internal_server_error)
 
     return app
