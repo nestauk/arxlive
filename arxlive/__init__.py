@@ -29,8 +29,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # disable CDN support for security
-    app.config['BOOTSTRAP_SERVE_LOCAL'] = True
 
     # routes
     app.add_url_rule('/', 'deepchange', views.deepchange)
