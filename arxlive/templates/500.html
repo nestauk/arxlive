@@ -1,9 +1,8 @@
 {% extends "base.html" %}
-{% block title %}arXlive: Internal server error{% endblock title %}
-{% block content %}
-<div class="container">
-  <h2>Internal Server Error</h2>
-  <p>Something is not working, but it will be fixed soon.
-  <p><a href="/">return to home</a>
-</div>
-{% endblock content %}
+{% block page_title %}Internal server error{% endblock  %}
+
+{% block page_content %}
+<h2>Internal Server Error</h2>
+<p>Something is not working.
+<p><a href="{{ url_for('index') }}">return to home</a>
+{% endblock  %}

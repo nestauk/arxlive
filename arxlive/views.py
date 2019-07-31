@@ -1,8 +1,16 @@
 from flask import render_template
 
 
+def index():
+    return render_template('index.html')
+
+
 def deepchange():
     return render_template('deepchange.html')
+
+
+def faq():
+    return render_template('faq.html')
 
 
 def hierarxy():

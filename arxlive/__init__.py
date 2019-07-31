@@ -29,11 +29,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-
     # routes
-    app.add_url_rule('/', 'deepchange', views.deepchange)
+    app.add_url_rule('/', 'index', views.index)
     app.add_url_rule('/deepchange/', 'deepchange', views.deepchange)
     app.add_url_rule('/hierarxy/', 'hierarxy', views.hierarxy)
+    app.add_url_rule('/faq/', 'faq', views.faq)
+
     app.register_error_handler(404, views.page_not_found)
     app.register_error_handler(500, views.internal_server_error)
 

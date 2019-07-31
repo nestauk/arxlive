@@ -1,50 +1,49 @@
 {% extends "base.html" %}
-{% block title %}arXlive: DeepChange{% endblock title %}
-{% block content %}
-<div class="container">
-    <h2>Welcome to arXlive</h2>
-    <p>In the past two decades, it has become the norm for entirely new industries to
-    arise in just a few years. Traditional means of monitoring industrial and academic
-    activity are relatively slow, and this leads to laggy policy decisions - which means
-    that the full benefits of these industries will not be distributed evenly. In
-    response to this, we have developed <strong>arXlive</strong>.</p>
-    <div class="center-container">
-        <h5>Figure 1: Distribution of Deep Learning/non Deep Learning papers by country (top countries)</h5>
-        <div class="chart-container">
-            <img class="img-responsive chart" src="{{url_for('static', filename='figure_1.png')}}" alt='figure_1'>
-        </div>
+{% block page_title %}DeepChange{% endblock %}
 
-        <h5>Figure 2: Distribution of Deep Learning/non Deep Learning papers by city (top cities)</h5>
-        <div class="chart-container">
-            <img class="img-responsive chart" src="{{url_for('static', filename='figure_2.png')}}" alt='figure_2'>
-        </div>
-
-        <h5>Figure 3: Percentage of papers identified as having a high Deep Learning 
-            content</h5>
-        <div class="chart-container">
-            <img class="img-responsive chart" src="{{url_for('static', filename='figure_3.png')}}" alt='figure_3'>
-        </div>
-
-        <h5>Figure 4: Shares of Deep Learning activity by subject, before and after 2012</h5>
-        <div class="chart-container">
-            <img class="img-responsive chart" src="{{url_for('static', filename='figure_4.png')}}" alt='figure_4'>
-        </div>
-
-        <h5>Figure 5: Comparison of changes in Revealed Comparative Advantage (RCA) 
-            between the period before 2012 and afterwards, focusing on the top 
-            countries by total level of DL activity.</h5>
-        <div class="chart-container">
-            <img class="img-responsive chart" src="{{url_for('static', filename='figure_5.png')}}" alt='figure_5'>
-        </div>
+{% block page_content %}
+<h2>Welcome to arXlive</h2>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <strong>arXlive</strong>.</p>
+<div class="center-container">
+    <h5>Figure 1: Distribution of Deep Learning/non Deep Learning papers by country (top countries)</h5>
+    <div class="chart-container">
+        <img class="img-responsive chart" src="{{url_for('static', filename='figure_1.png')}}" alt='figure_1'>
     </div>
 
+    <h5>Figure 2: Distribution of Deep Learning/non Deep Learning papers by city (top cities)</h5>
+    <div class="chart-container">
+        <img class="img-responsive chart" src="{{url_for('static', filename='figure_2.png')}}" alt='figure_2'>
+    </div>
 
-    <p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
-    <p>Link to methods and FAQ (to be added)</p>
+    <h5>Figure 3: Percentage of papers identified as having a high Deep Learning 
+        content</h5>
+    <div class="chart-container">
+        <img class="img-responsive chart" src="{{url_for('static', filename='figure_3.png')}}" alt='figure_3'>
+    </div>
+
+    <h5>Figure 4: Shares of Deep Learning activity by subject, before and after 2012</h5>
+    <div class="chart-container">
+        <img class="img-responsive chart" src="{{url_for('static', filename='figure_4.png')}}" alt='figure_4'>
+    </div>
+
+    <h5>Figure 5: Comparison of changes in Revealed Comparative Advantage (RCA) 
+        between the period before 2012 and afterwards, focusing on the top 
+        countries by total level of DL activity.</h5>
+    <div class="chart-container">
+        <img class="img-responsive chart" src="{{url_for('static', filename='figure_5.png')}}" alt='figure_5'>
+    </div>
 </div>
-{% endblock content %}
+
+
+<p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
+<p><a href="{{ url_for('faq') }}">Methods and FAQ</a></p>
+{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{{url_for('static', filename='deepchange.css')}}">
 {{ super() }}
-{% endblock styles %}
+{% endblock %}

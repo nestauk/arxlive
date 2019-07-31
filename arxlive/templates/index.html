@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<h2>Welcome to arXlive</h2>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <strong>arXlive</strong>.</p>
+
+<a href="{{ url_for('deepchange') }}"><h3>Deep learning, deep change</h3></a>
+<a href="{{ url_for('hierarxy') }}"><h3>hierarXy</h3></a>
+
+<p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
+<p><a href="{{ url_for('faq') }}">Methods and FAQ</a></p>
+{% endblock %}
