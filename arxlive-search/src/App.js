@@ -1,22 +1,36 @@
 import React, { Component } from 'react'
+
 import extend from 'lodash/extend'
 import { SearchkitManager,SearchkitProvider,
-  SearchBox, RefinementListFilter, Pagination,
-  HierarchicalMenuFilter, HitsStats, SortingSelector, NoHits,
-	 ResetFilters, RangeFilter, NumericRefinementListFilter, ViewSwitcherHits, ViewSwitcherToggle, DynamicRangeFilter, Hits, HitItemProps,
-  InputFilter, GroupedSelectedFilters,
-  Layout, TopBar, LayoutBody, LayoutResults,
-  ActionBar, ActionBarRow, SideBar } from 'searchkit'
+	 SearchBox, RefinementListFilter, Pagination,
+	 HierarchicalMenuFilter, HitsStats, SortingSelector, NoHits,
+	 CheckboxFilter, ResetFilters, RangeFilter,
+	 NumericRefinementListFilter, ViewSwitcherHits, ViewSwitcherToggle,
+	 DynamicRangeFilter, Hits, HitItemProps, BoolMust,
+	 RangeQuery, HierarchicalRefinementFilter,
+	 InputFilter, GroupedSelectedFilters,
+	 Layout, TopBar, LayoutBody, LayoutResults,
+	 ActionBar, ActionBarRow, SideBar } from 'searchkit'
+
+import { DateRangeFilter, DateRangeCalendar } from "searchkit-datefilter"
+import * as moment from "moment";
+
 import './index.css'
+import '../node_modules/searchkit-datefilter/release/theme.css'
+
+import 'katex/dist/katex.min.css'
+import Latex from 'react-latex-next'
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/meetup_v2/"
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v0/"
+
 const searchkit = new SearchkitManager(host, {
     httpHeaders:{"Content-Type":"application/json",
-		 "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
-		 "Es-Endpoint":"search-health-scanner-5cs7g52446h7qscocqmiky5dn4.eu-west-2.es.amazonaws.com",
-		}
+                 "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
+                 "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com",
+                }
 })
+
 
 const HitItem = (props)=> {    
   const {bemBlocks, result} = props
@@ -24,12 +38,27 @@ const HitItem = (props)=> {
   return (
 	  <div className={bemBlocks.item().mix(bemBlocks.container("item"))} data-qa="hit">
 	  <div className={bemBlocks.item("subitem")}>
-	  <a href={source.url_of_group} target={source.url_of_group}><h2 className={bemBlocks.item("name_of_group")} dangerouslySetInnerHTML={{__html:source.name_of_group}}></h2></a>
-	  <h3 className={bemBlocks.item("date_start_group")} dangerouslySetInnerHTML={{__html:source.date_start_group}}></h3>
+	  <a href={"https://arxiv.org/abs/"+result._id} target={"https://arxiv.org/abs/"+result._id}><h2 className={bemBlocks.item("name_of_group")}> <Latex>{source.title_of_article}</Latex></h2></a>
+	  <h4 className={bemBlocks.item("date_created_article")} dangerouslySetInnerHTML={{__html:source.date_created_article}}></h4>
+	  <h3 className={bemBlocks.item("terms_authors_article")}>
+	  {source.terms_authors_article &&
+	   source.terms_authors_article
+               .map(t => <span>{t}</span>)
+               .reduce((prev, curr) => [prev, ', ', curr])}	
+          </h3>
+	  <h4 className={bemBlocks.item("terms_institutes_article")}>
+	  {source.terms_institutes_article &&
+	   source.terms_institutes_article
+               .map(t => <span>{t}</span>)
+               .reduce((prev, curr) => [prev, ', ', curr])}	
+          </h4>	  
 	  <br></br>
-          <div className={bemBlocks.item("textBody_descriptive_group")} dangerouslySetInnerHTML={{__html:source.textBody_descriptive_group}} data-qa="textBody_descriptive_group"></div>
+          <div className={bemBlocks.item("textBody_abstract_article")}>
+	  <Latex>{source.textBody_abstract_article}</Latex>
+          </div>
+	  	  
 	  </div>
-	  </div>
+	</div>	  
   )
 }
 
@@ -38,16 +67,24 @@ class App extends Component {
     return (
       <SearchkitProvider searchkit={searchkit}>
         <Layout>
-        <TopBar>
-            <SearchBox autofocus={true} searchOnChange={false} prefixQueryFields={["name_of_group^10", "textBody_descriptive_group"]}/>
+          <TopBar>
+            <SearchBox autofocus={true} searchOnChange={false} prefixQueryFields={["title_of_article^10", "textBody_abstract_article"]}/>
           </TopBar>
         <LayoutBody>
 
           <SideBar>
-            <RangeFilter min={0} max={3000} field="count_member_group" id="count_member_group" title="Number of members" showHistogram={true}/>
-            <InputFilter id="placeName_continent_group" searchThrottleTime={500} title="Continent" placeholder="Search continent" searchOnChange={true} queryFields={["placeName_continent_group"]} />
-            <RefinementListFilter id="terms_topics_group" title="Topics" field="terms_topics_group.keyword" operator="OR"/>
-	    {/* Note the above doesn't work since you need to set raw fields like here https://gitter.im/searchkit/searchkit/archives/2017/12/31 */}
+	    <DateRangeFilter id="event_date" title="Date range"
+	                     fromDateField="date_created_article"
+                             toDateField="date_created_article"
+	                     calendarComponent={DateRangeCalendar}
+                             rangeFormatter={(v) => moment(parseInt(""+v)).format('DD/MM/YY')}
+            />
+            <RangeFilter min={0} max={100} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
+	    <RangeFilter min={0} max={2} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
+	    <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/>
+	    <HierarchicalRefinementFilter field="json_location_article" title="Author location" id="cats"/>
+	    <HierarchicalRefinementFilter field="json_fieldOfStudy_article" title="Field of study" id="fos"/>
+	    <HierarchicalRefinementFilter field="json_category_article" title="arXiv category" id="cats"/>
           </SideBar>
           <LayoutResults>
             <ActionBar>
@@ -58,9 +95,10 @@ class App extends Component {
                 }}/>
                 <ViewSwitcherToggle/>
                 <SortingSelector options={[
-                  {label:"Relevance", field:"_score", order:"desc"},
-                  {label:"Latest Releases", field:"date_start_group", order:"desc"},
-                  {label:"Earliest Releases", field:"date_start_group", order:"asc"}
+                    {label:"Novelty", field:"metric_novelty_article", order:"desc"},
+		    {label:"Search relevance", field:"_score", order:"desc"},
+                  {label:"Latest Releases", field:"date_created_article", order:"desc"},
+                  {label:"Earliest Releases", field:"date_created_article", order:"asc"}
                 ]}/>
               </ActionBarRow>
 
@@ -72,13 +110,13 @@ class App extends Component {
             </ActionBar>
             <Hits
                 hitsPerPage={12}
-	        highlightFields={["name_of_group", "textBody_descriptive_group"]}
-                sourceFilter={["name_of_group", "textBody_descriptive_group", "url_of_group", "date_start_group"]}
+	        highlightFields={["title_of_article", "textBody_abstract_article"]}
+        sourceFilter={["title_of_article", "textBody_abstract_article", "date_created_article", "terms_authors_article", "terms_institutes_article"]}
                 itemComponent={HitItem}
 	        mod="sk-hits-list"
                 scrollTo="body"
             />
-            <NoHits suggestionsField={"name_of_group"}/>
+            <NoHits suggestionsField={"title_of_article"}/>
             <Pagination showNumbers={true}/>
           </LayoutResults>
 
