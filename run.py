@@ -1,6 +1,9 @@
+import os
+
 import arxlive
 
-app = arxlive.create_app()
+config = os.environ.get('CONFIG_MODE')
+app = arxlive.create_app(config)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
