@@ -9,7 +9,7 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
-    pass
+    TESTING = True
 
 
 class ProductionConfig(Config):
