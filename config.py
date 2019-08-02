@@ -4,6 +4,7 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+    DEBUG = True
     # still serve from remote in debug mode
     FLASKS3_DEBUG = True
 
