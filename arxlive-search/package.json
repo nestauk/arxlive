@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "^1.0.14"
+    "katex": "^0.10.2",
+    "react-latex-next": "^1.1.0",
+    "react-scripts": "^1.0.14",
+    "searchkit-datefilter": "0.0.2"
   },
   "dependencies": {
     "react": "^15.6.2",
@@ -14,7 +17,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "postbuild": "rm -rf ../arxlive/search/build && mv build/ ../arxlive/search/build",
     "eject": "react-scripts eject"
   }
 }

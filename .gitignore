@@ -110,5 +110,5 @@ venv.bak/
 *npy
 *pickle
 
-# arxlive search build
-arxlive/search/build/
+# arxlive search built js
+arxlive/static/arxlive-search.js
