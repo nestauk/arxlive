@@ -24,7 +24,7 @@ import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v0/";
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v1/";
 
 const searchkit = new SearchkitManager(host, {
     httpHeaders:{"Content-Type":"application/json",
@@ -37,6 +37,7 @@ const searchkit = new SearchkitManager(host, {
 const HitItem = (props)=> {
     const {bemBlocks, result} = props;
     const source = extend({}, result._source);
+    const spaces = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
     return (
 	<div className={bemBlocks.item().mix(bemBlocks.container("item"))} data-qa="hit">
 	  <div className={bemBlocks.item("subitem")}>
@@ -49,15 +50,18 @@ const HitItem = (props)=> {
 	    </a>
 	    {/* Date and authors */}
 	    <h4 className={bemBlocks.item("date_created_article")}
-		dangerouslySetInnerHTML={{__html:source.date_created_article}}>
-	    </h4>
+	        dangerouslySetInnerHTML={{__html:source.date_created_article}}>
+	    </h4>            
 	    <h3 className={bemBlocks.item("terms_authors_article")}>
 	      {source.terms_authors_article &&
 	       source.terms_authors_article
 	       .map(t => <span>{t}</span>)
 	       .reduce((prev, curr) => [prev, ', ', curr])}
-	    </h3>
-	    {/* Date and authors */}
+	    </h3>            
+	    <h4 className={bemBlocks.item("metric_novelty_article")}
+	        dangerouslySetInnerHTML={{__html:"Citations: "+source.count_citations_article+spaces+"Novelty: "+source.metric_novelty_article.toFixed(2)}}>
+	    </h4>
+	    {/* Affiliations */}
 	    <h4 className={bemBlocks.item("terms_institutes_article")}>
 	      {source.terms_institutes_article &&
 	       source.terms_institutes_article
@@ -96,7 +100,7 @@ const HelloWorldComponent = (props)=> {
 
     return (
 	<div style={divStyle}>
-	  <br/> <br/> <br/>
+	  <br/>
 	  <b style={bStyle}>HierarXy</b> leverages
 	  <b style={bStyle}> Machine Learning </b>
 	  to rank documents by <b style={bStyle}> novelty </b>
@@ -137,18 +141,19 @@ class App extends Component {
 
 		<LayoutBody>
 		  <SideBar>
-		    <DateRangeFilter id="event_date" title="Date range"
-				     fromDateField="date_created_article"
-				     toDateField="date_created_article"
-				     calendarComponent={DateRangeCalendar}
-				     rangeFormatter={(v) => moment(parseInt(""+v)).format('DD/MM/YY')}
-		    />
-		    <RangeFilter min={0} max={100} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
-		    <RangeFilter min={0} max={2} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
+		    {/* <DateRangeFilter id="event_date" title="Date range" */}
+		    {/* 		     fromDateField="date_created_article" */}
+		    {/* 		     toDateField="date_created_article" */}
+		    {/* 		     calendarComponent={DateRangeCalendar} */}
+		    {/* 		     rangeFormatter={(v) => moment(parseInt(""+v)).format('DD/MM/YY')} */}
+		    {/* /> */}
+		    <RangeFilter min={1990} max={2020} field="year_of_article" id="year_of_article" title="Year of article" showHistogram={true}/>
+                    <RangeFilter min={0} max={100} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
+		    <RangeFilter min={-300} max={250} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
 		    <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/>
 		  <HierarchicalRefinementFilter field="json_location_article" title="Author location" id="cats"/>
 		  <HierarchicalRefinementFilter field="json_fieldOfStudy_article" title="Field of study" id="fos"/>
-		  <HierarchicalRefinementFilter field="json_category_article" title="arXiv category" id="cats"/>
+		  <HierarchicalRefinementFilter field="json_category_article" title="arXiv category" id="cats2"/>
 		</SideBar>
 
 		<LayoutResults>
@@ -184,6 +189,9 @@ class App extends Component {
 				   "textBody_abstract_article",
 				   "date_created_article",
 				   "terms_authors_article",
+                                   "count_citations_article",
+				   "metric_novelty_article",
+				   "json_category_article",
 				   "terms_institutes_article"]}
 		    itemComponent={HitItem}
 		    mod="sk-hits-list"
