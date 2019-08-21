@@ -31,7 +31,9 @@ class KeywordForm(Form):
     name = TextField('Name:', validators=[validators.required()])
     default_methods = ['GET', 'POST']
 
-
+STOPWORDS = make_query(url=URL, q='and of but on by', alg='jlh',
+                       field='textBody_abstract_article', size=100)
+print(STOPWORDS)
 def keywords():
     form = KeywordForm(request.form)
     if request.method == 'POST':
@@ -40,7 +42,8 @@ def keywords():
             results = make_query(url=URL, q=text, alg='jlh',
                                  field='textBody_abstract_article')
             results = [r for r in results
-                       if r.replace("'", "")[:-1] not in results]  # remove basic plurals
+                       if r.replace("'", "")[:-1] not in results
+                       and r not in STOPWORDS]  # remove basic plurals
             flash(', '.join(results))
     return render_template('keywords.html', form=form)
 
