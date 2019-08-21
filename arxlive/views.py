@@ -5,7 +5,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 
 URL = "https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com/arxiv_v1/_search"
 
-def make_query(url, q, alg, field, shard_size=100, size=25):
+def make_query(url, q, alg, field, shard_size=1000, size=20):
     query = {"query" : { "match" : {field : q } },
              "size": 0,
              "aggregations" : {
@@ -39,6 +39,8 @@ def keywords():
         if len(text.strip()) > 0:
             results = make_query(url=URL, q=text, alg='jlh',
                                  field='textBody_abstract_article')
+            results = [r for r in results
+                       if r.replace("'", "")[:-1] not in results]  # remove basic plurals
             flash(', '.join(results))
     return render_template('keywords.html', form=form)
 
