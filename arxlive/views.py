@@ -1,4 +1,46 @@
-from flask import render_template
+from flask import Flask, render_template, flash, request
+import requests
+import json
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+
+URL = "https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com/arxiv_v1/_search"
+
+def make_query(url, q, alg, field, shard_size=100, size=25):
+    query = {"query" : { "match" : {field : q } },
+             "size": 0,
+             "aggregations" : {
+                 "my_sample" : {
+                     "sampler" : {"shard_size" : shard_size},
+                     "aggregations": {
+                        "keywords" : {
+                            "significant_text" : {
+                                "size": size,
+                                "field" : field,
+                                alg:{}
+                             }
+                        }
+                    }
+                }
+            }
+        }
+    return [row['key'] for row in requests.post(url, data=json.dumps(query),
+                                                headers={'Content-Type':'application/json'}).json()['aggregations']['my_sample']['keywords']['buckets']]
+
+
+class KeywordForm(Form):
+    name = TextField('Name:', validators=[validators.required()])
+    default_methods = ['GET', 'POST']
+
+
+def keywords():
+    form = KeywordForm(request.form)
+    if request.method == 'POST':
+        text = request.form['name']
+        if len(text.strip()) > 0:
+            results = make_query(url=URL, q=text, alg='jlh',
+                                 field='textBody_abstract_article')
+            flash(', '.join(results))
+    return render_template('keywords.html', form=form)
 
 
 def index():

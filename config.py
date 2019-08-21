@@ -1,7 +1,7 @@
 class Config:
     # ensure css files have the correct metadata
     FLASKS3_FILEPATH_HEADERS = {r'.css$': {'Content-Type': 'text/css', }}
-
+    SECRET_KEY = '7d441f27d441f27567d441f2b6176a'
 
 class DevelopmentConfig(Config):
     DEBUG = True

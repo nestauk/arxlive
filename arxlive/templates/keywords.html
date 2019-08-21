@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block page_title %}arXlive keyword factory{% endblock %}
+
+{% block page_content %}
+
+  <h2>arXlive Keyword Factory</h2>
+  <form action="" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter a keyword">
+    </div>    
+    
+  </form>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">{{ message[1] }}</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  </form>
+
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='deepchange.css')}}">
+{{ super() }}
+{% endblock %}
