@@ -38,8 +38,9 @@ class KeywordForm(Form):
     name = TextField('Name:', validators=[validators.required()])
 
 
-STOPWORDS = make_query(url=URL, q='and of but on by', alg='jlh',
-                       field='textBody_abstract_article', size=100)
+STOPWORDS = ['']
+#make_query(url=URL, q='and of but on by', alg='jlh',
+#field='textBody_abstract_article', size=100)
 
 
 def keywords(query=''):

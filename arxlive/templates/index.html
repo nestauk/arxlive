@@ -3,21 +3,28 @@
 {% block page_content %}
 
 <div style="max-width:100%; margin-top:30px; margin-bottom:60px;">
-  <a  href="{{ url_for('index') }}">
-    <img alt="arXlive", height="60px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
-  </a>
+  <img alt="arXlive", height="60px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
   &nbsp   &nbsp   &nbsp
   <a href="https://www.nesta.org.uk">
     <img alt="nesta", height="60px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
   </a>
 </div>
 
-<h2> <img alt="arXlive" style="position: relative; top: -5px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
+<h2> Explore emerging trends in research data. </h2>
+<p>
+  <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+  is an open source platform for live monitoring of innovation activity in arXiv publications. Underpinning
+  <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+  is a data analysis and production system, which orchestrates a stable pipeline of data collection, enrichment and machine learning.
+</p>
+
+<br>
+<h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
 <h3> <a href="{{ url_for('hierarxy') }}">HierarXy</a>: search for novel activity in arXiv articles.</h3> 
-<h3><a href="{{ url_for('keywords') }}">Keyword Factory</a>: Expand your technical vocabulary with the arXiv data.</h3>
+<h3><a href="{{ url_for('keywords') }}">Keyword Factory</a>: expand your technical vocabulary.</h3>
 <br>
 
-<h2> <img alt="arXlive" style="position: relative; top: -5px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> papers</h2>
+<h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> papers</h2>
 <p>
   In recent decades it has become the norm for entirely new industries to
   arise in just a few years.
@@ -26,19 +33,14 @@
   decisions - which means
   that the full benefits of these industries will not be distributed
   evenly. As our team continue to write academic outputs using
-  arXiv data we will integrated these into the <img alt="arXlive" style="position: relative; top: -1px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> platform.
+  arXiv data we will integrate these into the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.
 </p>
 
-<i> <h3> Automated papers: </h3></i>
 <a href="{{ url_for('deepchange') }}"><h3>Deep learning, deep change</h3></a>
-<br>
-<i> <h3> Papers soon to be automated: </h3></i>
-<h3> Gender Diversity in AI <a href="https://www.nesta.org.uk/report/gender-diversity-ai/">(see here for details!)</a> </h3>
+<h3><i> In the pipeline:</i> Gender Diversity in AI <a href="https://www.nesta.org.uk/report/gender-diversity-ai/">(details)</a> </h3>
 
 <br>
-<h2> Open source data </h2>
-
-<br>
-<h2> Our stack </h2>
+<h2> Open source </h2>
+All of our code is open source, and we only use open source data in the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> platform. Check out our GitHub repo to understand (or even contribute) the inner workings of <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">. In addition to arXiv data, we also use data from GRID and Microsoft Academic Graph.
 
 {% endblock %}

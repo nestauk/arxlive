@@ -7,7 +7,7 @@
   @font-face {
     font-family: AvertaRegular;
     src: url("{{ ASSET_URL }}") format("opentype");
-  }  
+  }
   body {
       font-family: "AvertaRegular", sans-serif;
       background-color: #FFFFFF;
@@ -30,28 +30,28 @@
 {% block navbar %}
     <nav class="navbar navbar-default">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <img alt="arXlive", height="20px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
-            </a>
+	<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="{{ url_for('index') }}">
+		<img alt="arXlive", height="20px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+	    </a>
 
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-              <img alt="nesta", height="20px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
-            </a>	    
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('deepchange') }}">DeepChange</a></li>
-                <li><a href="{{ url_for('hierarxy') }}">HierarXy</a></li>
-                <li><a href="{{ url_for('keywords') }}">Keyword Factory</a></li>		
-            </ul>
-        </div>
+	    <a class="navbar-brand" href="{{ url_for('index') }}">
+	      <img alt="nesta", height="20px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
+	    </a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+		<li><a href="{{ url_for('hierarxy') }}">HierarXy</a></li>
+		<li><a href="{{ url_for('keywords') }}">Keyword Factory</a></li>
+		<li><a href="{{ url_for('deepchange') }}">DeepChange</a></li>
+	    </ul>
+	</div>
     </div>
 </nav>
 {% endblock %}
