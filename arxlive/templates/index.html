@@ -13,14 +13,16 @@
 <h2> Explore emerging trends in research data. </h2>
 <p>
   <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
-  is an open source platform for live monitoring of innovation activity in arXiv publications. Underpinning
+  is an open source platform for live monitoring of innovation activity in
+  <a href="https://arxiv.org/"> arXiv pre-prints</a>, which are predominantly physical, computational and quantitative research disciplines.
+  Underpinning
   <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
   is a data analysis and production system, which orchestrates a stable pipeline of data collection, enrichment and machine learning.
 </p>
 
 <br>
 <h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
-<h3> <a href="{{ url_for('hierarxy') }}">HierarXy</a>: search for novel activity in arXiv articles.</h3> 
+<h3> <a href="{{ url_for('hierarxy') }}">HierarXy</a>: search for novel activity in arXiv articles.</h3>
 <h3><a href="{{ url_for('keywords') }}">Keyword Factory</a>: expand your technical vocabulary.</h3>
 <br>
 
@@ -32,7 +34,7 @@
   activity are relatively slow, and this leads to laggy policy
   decisions - which means
   that the full benefits of these industries will not be distributed
-  evenly. As our team continue to write academic outputs using
+  evenly. As our team continue to publish academic outputs using
   arXiv data we will integrate these into the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.
 </p>
 
@@ -41,6 +43,20 @@
 
 <br>
 <h2> Open source </h2>
-All of our code is open source, and we only use open source data in the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> platform. Check out our GitHub repo to understand (or even contribute) the inner workings of <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">. In addition to arXiv data, we also use data from GRID and Microsoft Academic Graph.
+All of our code is open source, and we only use open source data in the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> platform. Check out our
+<a href="https://github.com/nestauk/nesta"> GitHub repo </a>
+to understand (or even contribute) the inner workings of <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">. In addition to arXiv data, we also use data from
+<a href="https://www.grid.ac/"> GRID</a> and
+<a href="https://academic.microsoft.com/home"> Microsoft Academic Graph</a>.
+<br>
+<br>
+
+<h2> Blogs </h2>
+<h4> 02-Jul-19: <a style="display: inline; clear: none;" href="https://www.nesta.org.uk/blog/bringing-arxiv-data-life/">Bringing arxiv data to life</a></h4>
+<h4> 19-Apr-19: <a style="display: inline" href="https://www.nesta.org.uk/blog/is-ai-eating-software-an-analysis-of-aiml-research-trends-using-scientific-pre-prints/">Is AI eating software?</a></h4>
+
+<br>
+<br>
+
 
 {% endblock %}
