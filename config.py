@@ -1,7 +1,11 @@
 class Config:
     # ensure css files have the correct metadata
-    FLASKS3_FILEPATH_HEADERS = {r'.css$': {'Content-Type': 'text/css', }}
+    FLASKS3_FILEPATH_HEADERS = {r'.css$': {'Content-Type': 'text/css'},
+                                r".otf$": {'Content-Type': 'text/x-font-opentype',
+                                           'Access-Control-Allow-Origin': '*'}}
     SECRET_KEY = '7d441f27d441f27567d441f2b6176a'
+    FLASK_ASSETS_USE_S3 = True
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

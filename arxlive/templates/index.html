@@ -1,16 +1,61 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<h2>Welcome to arXlive</h2>
+
+<div style="max-width:100%; margin-top:30px; margin-bottom:60px;">
+  <a  href="{{ url_for('index') }}">
+    <img alt="arXlive", height="60px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+  </a>
+  &nbsp   &nbsp   &nbsp
+  <a href="https://www.nesta.org.uk">
+    <img alt="nesta", height="60px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
+  </a>
+</div>
+
 <p>In the past two decades, it has become the norm for entirely new industries to
 arise in just a few years. Traditional means of monitoring industrial and academic
 activity are relatively slow, and this leads to laggy policy decisions - which means
 that the full benefits of these industries will not be distributed evenly. In
-response to this, we have developed <strong>arXlive</strong>.</p>
+response to this, we have developed <img alt="arXlive" style="position: relative; top: -1px;" height="10px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.</p>
+
+<h2> <img alt="arXlive" style="position: relative; top: -5px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <img alt="arXlive" style="position: relative; top: -1px;" height="10px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.</p>
+
+
+<a href="{{ url_for('hierarxy') }}"><h3>HierarXy</h3></a>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <img alt="arXlive" style="position: relative; top: -1px;" height="10px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.</p>
+
+
+<a href="{{ url_for('keywords') }}"><h3>Keyword Factory</h3></a>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <img alt="arXlive" style="position: relative; top: -1px;" height="10px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.</p>
+
+<h2> <img alt="arXlive" style="position: relative; top: -5px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> papers</h2>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <img alt="arXlive" style="position: relative; top: -1px;" height="10px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.</p>
+
 
 <a href="{{ url_for('deepchange') }}"><h3>Deep learning, deep change</h3></a>
-<a href="{{ url_for('hierarxy') }}"><h3>hierarXy</h3></a>
-<a href="{{ url_for('keywords') }}"><h3>Keyword Factory</h3></a>
+<p>In the past two decades, it has become the norm for entirely new industries to
+arise in just a few years. Traditional means of monitoring industrial and academic
+activity are relatively slow, and this leads to laggy policy decisions - which means
+that the full benefits of these industries will not be distributed evenly. In
+response to this, we have developed <img alt="arXlive" style="position: relative; top: -1px;" height="10px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.</p>
+
 
 <p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
 <p><a href="{{ url_for('faq') }}">Methods and FAQ</a></p>

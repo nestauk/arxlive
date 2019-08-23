@@ -1,6 +1,25 @@
 {% extends "bootstrap/base.html" %}
 {% block head %}
 {{ super() }}
+
+{% assets "nesta.otf" %}
+<style type="text/css">
+  @font-face {
+    font-family: AvertaRegular;
+    src: url("{{ ASSET_URL }}") format("opentype");
+  }  
+  body {
+      font-family: "AvertaRegular", sans-serif;
+      background-color: #FFFFFF;
+      color: #231F20;
+      font-size: 18px;
+      line-height: 1.8;
+  }
+</style>
+{% endassets %}
+
+
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}"> -->
 <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
 <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon-96x96.png') }}">
@@ -21,11 +40,15 @@
             <a class="navbar-brand" href="{{ url_for('index') }}">
                 <img alt="arXlive", height="20px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
             </a>
+
+            <a class="navbar-brand" href="https://www.nesta.org.uk">
+              <img alt="nesta", height="20px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
+            </a>	    
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ url_for('deepchange') }}">DeepChange</a></li>
-                <li><a href="{{ url_for('hierarxy') }}">hierarXy</a></li>
+                <li><a href="{{ url_for('hierarxy') }}">HierarXy</a></li>
                 <li><a href="{{ url_for('keywords') }}">Keyword Factory</a></li>		
             </ul>
         </div>
