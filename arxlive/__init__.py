@@ -30,7 +30,10 @@ def create_app(config_name='default'):
     app.add_url_rule('/', 'index', views.index)
     app.add_url_rule('/deepchange/', 'deepchange', views.deepchange)
     app.add_url_rule('/hierarxy/', 'hierarxy', views.hierarxy)
-    app.add_url_rule('/keywords/', 'keywords', views.keywords, methods=['GET', 'POST'])
+    app.add_url_rule('/keywords/', 'keywords', views.keywords,
+                     methods=['GET', 'POST'])
+    app.add_url_rule('/keywords/<query>', 'keywords', views.keywords,
+                     methods=['GET', 'POST'])
     app.add_url_rule('/faq/', 'faq', views.faq)
 
     # error pages

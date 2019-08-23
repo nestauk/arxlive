@@ -3,22 +3,34 @@
 
 {% block page_content %}
 
-  <h2>Keyword Factory</h2>
-  <form action="" method="post" role="form">
+  <h1>Keyword Factory</h1>
+  <br>
+  <p> This tool helps you to expand your <b style="color:blue">technical vocabulary</b> using the arXiv dataset. <br> Note that terms which occur infrequently in arXiv articles will not return good (if any) results. </p>
+  <br>
+  <form action="" method="post" role="form" autocomplete="off">
     {{ form.csrf }}
     <div class="form-group">
-      <input type="text" class="form-control" id="name" name="name" placeholder="Enter a keyword">
+      <input type="text" class="form-control"
+	     style="height: 60px; font-size: 30px"
+	     id="name" name="name"
+	     placeholder="e.g. 'graphene',  'deep neural network' ...">
     </div>    
-    
   </form>
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
+  <br>
+  <h2> {{ query }} </h2>
+  is associated with:
+  <br>  <br>
   {% for message in messages %}
   <div class="alert alert-info">{{ message[1] }}</div>
   {% endfor %}
+  <p> Using these keywords in combination
+    with <b style="color:red">{{ query }}</b> will
+    help you expand your search horizons. 
+  </p>
   {% endif %}
   {% endwith %}
-  </form>
 
 {% endblock %}
 {% block styles %}

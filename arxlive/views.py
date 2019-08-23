@@ -1,51 +1,64 @@
-from flask import Flask, render_template, flash
+from flask import render_template, flash, request, redirect, url_for
 import requests
 import json
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+from wtforms import Form, TextField, validators
 
-URL = "https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com/arxiv_v1/_search"
+URL = ("https://search-arxlive-"
+       "t2brq66muzxag44zwmrcfrlmq4."
+       "eu-west-2.es.amazonaws.com/"
+       "arxiv_v1/_search")
 
-def make_query(url, q, alg, field, shard_size=1000, size=20):
-    query = {"query" : { "match" : {field : q } },
+
+def make_query(url, q, alg, field, shard_size=1000, size=15):
+    agg_name = 'my_sample'
+    query = {"query": {"match": {field: q}},
              "size": 0,
-             "aggregations" : {
-                 "my_sample" : {
-                     "sampler" : {"shard_size" : shard_size},
+             "aggregations": {
+                 agg_name: {
+                     "sampler": {"shard_size": shard_size},
                      "aggregations": {
-                        "keywords" : {
-                            "significant_text" : {
+                        "keywords": {
+                            "significant_text": {
                                 "size": size,
-                                "field" : field,
-                                alg:{}
-                             }
+                                "field": field,
+                                alg: {}
+                            }
                         }
-                    }
-                }
-            }
-        }
-    return [row['key'] for row in requests.post(url, data=json.dumps(query),
-                                                headers={'Content-Type':'application/json'}).json()['aggregations']['my_sample']['keywords']['buckets']]
+                     }
+                 }
+             }}
+    r = requests.post(url, data=json.dumps(query),
+                      headers={'Content-Type': 'application/json'})
+    aggs = r.json()['aggregations']
+    buckets = aggs[agg_name]['keywords']['buckets']
+    return [row['key'] for row in buckets]
 
 
 class KeywordForm(Form):
     name = TextField('Name:', validators=[validators.required()])
-    default_methods = ['GET', 'POST']
+
 
 STOPWORDS = make_query(url=URL, q='and of but on by', alg='jlh',
                        field='textBody_abstract_article', size=100)
-print(STOPWORDS)
-def keywords():
+
+
+def keywords(query=''):
     form = KeywordForm(request.form)
     if request.method == 'POST':
-        text = request.form['name']
-        if len(text.strip()) > 0:
-            results = make_query(url=URL, q=text, alg='jlh',
-                                 field='textBody_abstract_article')
-            results = [r for r in results
-                       if r.replace("'", "")[:-1] not in results
-                       and r not in STOPWORDS]  # remove basic plurals
-            flash(', '.join(results))
-    return render_template('keywords.html', form=form)
+        query = request.form['name']
+        return redirect(url_for('keywords', query=query))
+
+    if len(query.strip()) > 0:
+        results = make_query(url=URL, q=query, alg='jlh',
+                             field='textBody_abstract_article')
+        results = [r for r in results
+                   if r.replace("'", "")[:-1] not in results
+                   and r not in STOPWORDS  # basic plurals
+                   and r not in query.split()]
+        flash(', '.join(results))
+    return render_template('keywords.html',
+                           query=query,
+                           form=form)
 
 
 def index():
