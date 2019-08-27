@@ -13,13 +13,9 @@ import { SearchkitManager,SearchkitProvider,
 	 Layout, TopBar, LayoutBody, LayoutResults,
 	 ActionBar, ActionBarRow, SideBar } from 'searchkit';
 
-import { DateRangeFilter,
-	 DateRangeCalendar } from "searchkit-datefilter";
 import * as moment from "moment";
 
 import './index.css';
-import '../node_modules/searchkit-datefilter/release/theme.css';
-
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
