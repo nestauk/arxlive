@@ -1,6 +1,7 @@
 from config import config
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_mobility import Mobility
 from flask_s3 import FlaskS3
 import os
 from arxlive import views
@@ -9,6 +10,7 @@ import flask_assets
 assets = flask_assets.Environment()
 bootstrap = Bootstrap()
 s3 = FlaskS3()
+mob = Mobility()
 
 
 def create_app(config_name='default'):
@@ -19,6 +21,7 @@ def create_app(config_name='default'):
     bootstrap.init_app(app)
     s3.init_app(app)
     assets.init_app(app)
+    mob.init_app(app)
 
     # ensure the instance folder exists
     try:

@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 
 import extend from 'lodash/extend';
 import { SearchkitManager,SearchkitProvider,
-	 SearchBox, RefinementListFilter, Pagination,
-	 HierarchicalMenuFilter, HitsStats, SortingSelector, NoHits,
+	 SearchBox, Pagination, HitsStats,
+         SortingSelector, NoHits,
 	 CheckboxFilter, ResetFilters, RangeFilter,
-	 NumericRefinementListFilter, ViewSwitcherHits,
-	 ViewSwitcherToggle,
-	 DynamicRangeFilter, Hits, HitItemProps, BoolMust,
+	 ViewSwitcherToggle, Hits, BoolMust,
 	 RangeQuery, HierarchicalRefinementFilter,
-	 InputFilter, GroupedSelectedFilters,
+	 GroupedSelectedFilters,
 	 Layout, TopBar, LayoutBody, LayoutResults,
 	 ActionBar, ActionBarRow, SideBar } from 'searchkit';
-
-import * as moment from "moment";
 
 import './index.css';
 import 'katex/dist/katex.min.css';
@@ -34,6 +30,11 @@ const HitItem = (props)=> {
     const {bemBlocks, result} = props;
     const source = extend({}, result._source);
     const spaces = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+    let novelty = "";
+    if(source.metric_novelty_article){
+	novelty = "Novelty: "+source.metric_novelty_article.toFixed(2);
+    }
+    
     return (
 	<div className={bemBlocks.item().mix(bemBlocks.container("item"))} data-qa="hit">
 	  <div className={bemBlocks.item("subitem")}>
@@ -55,7 +56,7 @@ const HitItem = (props)=> {
 	       .reduce((prev, curr) => [prev, ', ', curr])}
 	    </h3>            
 	    <h4 className={bemBlocks.item("metric_novelty_article")}
-	        dangerouslySetInnerHTML={{__html:"Citations: "+source.count_citations_article+spaces+"Novelty: "+source.metric_novelty_article.toFixed(2)}}>
+	        dangerouslySetInnerHTML={{__html:"Citations: "+source.count_citations_article+spaces+novelty}}>
 	    </h4>
 	    {/* Affiliations */}
 	    <h4 className={bemBlocks.item("terms_institutes_article")}>
@@ -91,7 +92,7 @@ const HelloWorldComponent = (props)=> {
     };
 
     const bStyle = {
-	color: 'blue',
+	color: '#000',
     };
 
     return (
@@ -144,7 +145,7 @@ class App extends Component {
 		    {/* 		     rangeFormatter={(v) => moment(parseInt(""+v)).format('DD/MM/YY')} */}
 		    {/* /> */}
 		    <RangeFilter min={1990} max={2020} field="year_of_article" id="year_of_article" title="Year of article" showHistogram={true}/>
-                    <RangeFilter min={0} max={100} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
+                    <RangeFilter min={0} max={300} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
 		    <RangeFilter min={-300} max={250} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
 		    <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/>
 		  <HierarchicalRefinementFilter field="json_location_article" title="Author location" id="cats"/>

@@ -1,22 +1,23 @@
 {
-    "name": "searchkit-starter",
-    "version": "0.1.0",
-    "private": true,
-    "devDependencies": {
-	"katex": "^0.10.2",
-	"react-latex-next": "^1.1.0",
-	"react-scripts": "^1.0.14",
-	"bootstrap": "beta"
-    },
-    "dependencies": {
-	"react": "^15.6.2",
-	"react-dom": "^15.6.2",
-	"searchkit": "beta"
-    },
-    "scripts": {
-	"start": "react-scripts start",
-	"build": "react-scripts build",
-	"test": "react-scripts test --env=jsdom",
-	"eject": "react-scripts eject"
-    }
+			"name": "searchkit-starter",
+			"version": "0.1.0",
+			"private": true,
+			"devDependencies": {
+						"katex": "^0.10.2",
+						"react-latex-next": "^1.1.0",
+						"react-scripts": "^1.0.14",
+						"bootstrap": "beta"
+			},
+			"dependencies": {
+						"moment": "^2.24.0",
+						"react": "^15.6.2",
+						"react-dom": "^15.6.2",
+						"searchkit": "beta"
+			},
+			"scripts": {
+						"start": "react-scripts start",
+						"build": "react-scripts build",
+						"test": "react-scripts test --env=jsdom",
+						"eject": "react-scripts eject"
+			}
 }

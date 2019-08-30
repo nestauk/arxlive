@@ -2,45 +2,177 @@
 {% block page_title %}DeepChange{% endblock %}
 
 {% block page_content %}
-<h2>Welcome to arXlive</h2>
-<p>In the past two decades, it has become the norm for entirely new industries to
-arise in just a few years. Traditional means of monitoring industrial and academic
-activity are relatively slow, and this leads to laggy policy decisions - which means
-that the full benefits of these industries will not be distributed evenly. In
-response to this, we have developed <strong>arXlive</strong>.</p>
-<div class="center-container">
-    <h5>Figure 1: Distribution of Deep Learning/non Deep Learning papers by country (top countries)</h5>
-    <div class="chart-container">
-        <img class="img-responsive chart" src="{{url_for('static', filename='figure_1.png')}}" alt='figure_1'>
-    </div>
+<h1>Deep Learning, Deep Change?</h1>
+<h2> Mapping the development of a General Purpose Technology.</h2>
+<h3> J. Klinger, J. Mateos-Garcia, and K. Stathoulopoulos </h3>
+<h3> Automated by Russell Winch and Joel Klinger </h3>
 
-    <h5>Figure 2: Distribution of Deep Learning/non Deep Learning papers by city (top cities)</h5>
-    <div class="chart-container">
-        <img class="img-responsive chart" src="{{url_for('static', filename='figure_2.png')}}" alt='figure_2'>
-    </div>
+<br>
+<p><i><b> The figures of this live paper are updated daily</b>. <br> Summary results are provided here; for full methodological workings please see <a href="https://arxiv.org/pdf/1808.06355.pdf" target="_blank">the original paper</a>.</i></p>
 
-    <h5>Figure 3: Percentage of papers identified as having a high Deep Learning 
-        content</h5>
-    <div class="chart-container">
-        <img class="img-responsive chart" src="{{url_for('static', filename='figure_3.png')}}" alt='figure_3'>
-    </div>
+<div style="max-width:800px; text-align: center">
 
-    <h5>Figure 4: Shares of Deep Learning activity by subject, before and after 2012</h5>
-    <div class="chart-container">
-        <img class="img-responsive chart" src="{{url_for('static', filename='figure_4.png')}}" alt='figure_4'>
-    </div>
+  <hr width="50%" style="margin:50px 25% 50px 25%;height:1px;border:none;color:#333;background-color:#333;">
+  <h3 style="line-height:30px">
+    In recent decades entirely new industries have
+    arisen in just a few years.
+  </h3>
 
-    <h5>Figure 5: Comparison of changes in Revealed Comparative Advantage (RCA) 
-        between the period before 2012 and afterwards, focusing on the top 
-        countries by total level of DL activity.</h5>
-    <div class="chart-container">
-        <img class="img-responsive chart" src="{{url_for('static', filename='figure_5.png')}}" alt='figure_5'>
-    </div>
+  <h3 style="line-height:30px">
+    Traditional data for monitoring
+    industrial and academic
+    activity are slow, leading to
+    laggy public policy.
+  </h3>
+
+  <h3 style="line-height:30px">
+    This means that the benefits of these
+    new industries may not be distributed evenly.
+  </h3>
+
+  <h3 style="line-height:30px">
+    One technology which
+    is leading to rapid industrial change
+    is <strong>Deep Learning</strong>.
+  </h3>
+
+  <hr width="50%" style="margin:50px 25% 50px 25%;height:1px;border:none;color:#333;background-color:#333;">
+
+  <h3 style="line-height:30px">
+    The growth of Deep Learning in scientific literature
+    has been rapid since the publication of seminal works in 2012.
+  </h3>
+  <h3 style="line-height:30px">
+    To a large extent this has been driven by the maturity of GPU technology and the relatively low cost of computing power.
+  </h3>
+
+<br>
+{% if request.MOBILE %}
+<div class="center-container" style="margin:0">
+{% else %}
+<div class="center-container" style="margin:0; margin-right:100px;">
+{% endif %}
+  <div class="chart-container">
+    <h5 style="float:right; width:85%">
+      Figure 1: Percentage of papers identified
+      as having a high Deep Learning content
+    </h5>
+    <img class="img-responsive chart" src="{{url_for('static', filename='figure_3.png')}}" alt='figure_3'>
+  </div>
 </div>
 
+<hr width="50%" style="margin:50px 25% 50px 25%;height:1px;border:none;color:#333;background-color:#333;">
 
-<p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
-<p><a href="{{ url_for('faq') }}">Methods and FAQ</a></p>
+<h3 style="line-height:30px">
+  This growth has been significantly more pronounced in some disciplines of computer science compared with others.
+</h3>
+<h3 style="line-height:30px">
+  This allows us to naturally benchmark the growth of 'academic industries' which have been revolutionised by Deep Learning, against those which have remained relatively unchanged.
+</h3>
+
+<br>
+{% if request.MOBILE %}
+<div class="center-container" style="margin:0">
+{% else %}
+<div class="center-container" style="margin:0; margin-right:120px;">
+{% endif %}
+  <div class="chart-container">
+    <h5 style="width:85%; float:right">
+      Figure 2: Shares of Deep Learning
+      activity by subject, before and after 2012
+    </h5>
+    <img style="float:margin 25px 25% 25px 25%" class="img-responsive chart" src="{{url_for('static', filename='figure_4.png')}}" alt='figure_4'>
+  </div>
+</div>
+
+<hr width="50%" style="margin:50px 25% 50px 25%;height:1px;border:none;color:#333;background-color:#333;">
+
+<h3 style="line-height:30px">
+  At the national level, there are
+  large differences in the relative
+  focus of Deep Learning and non-Deep Learning
+  research.
+</h3>
+
+<h3 style="line-height:30px">
+  For example, European countries tend to produce
+  more research in non-Deep Learning disciplines,
+  whereas the opposite is true for the US, China and Australia.
+</h3>
+
+<br>
+{% if request.MOBILE %}
+<div class="center-container" style="margin:0">
+{% else %}
+<div class="center-container" style="margin:0; margin-right:100px;">
+{% endif %}
+  <div class="chart-container">
+    <h5 style="float:right; width:85%">
+      Figure 3: Distribution of
+      Deep Learning/non-Deep Learning
+      papers by country (top countries)
+    </h5>
+    <img class="img-responsive chart" src="{{url_for('static', filename='figure_1.png')}}" alt='figure_1'>
+  </div>
+</div>
+
+<hr width="50%" style="margin:50px 25% 50px 25%;height:1px;border:none;color:#333;background-color:#333;">  
+
+<h3 style="line-height:30px">
+  This geographic difference is echoed at the subnational level,
+  although almost all of most prolificly 'Deep Learning' city regions
+  perform more Deep Learning than non-Deep Learning
+  computer science research.
+</h3>
+
+<br>
+{% if request.MOBILE %}
+<div class="center-container" style="margin:0">
+{% else %}
+<div class="center-container" style="margin:0; margin-right:100px;">
+{% endif %}
+  <div class="chart-container">
+    <h5 style="float:right; width:85%">
+      Figure 4: Distribution of
+      Deep Learning/non-Deep Learning
+      papers by city (top cities)
+    </h5>
+    <img class="img-responsive chart" src="{{url_for('static', filename='figure_2.png')}}" alt='figure_2'>
+  </div>
+</div>
+
+<hr width="50%" style="margin:50px 25% 50px 25%;height:1px;border:none;color:#333;background-color:#333;">  
+
+<h3>
+  The question remains - has Deep Learning led to deep changes
+  in the international 'market leaders' in AI research?
+</h3>
+
+<h3>
+  Our research clearly shows that this is the case, with countries like X, Y and Z
+  becoming more relatively competitive, whereas those in Europe have struggled to keep pace.
+</h3>
+
+<br>
+{% if request.MOBILE %}
+<div class="center-container" style="margin:0">
+{% else %}
+<div class="center-container" style="margin:0; margin-right:100px;">
+{% endif %}
+  <div class="chart-container">
+    <h5 style="float:right; width:85%">
+      Figure 5: Comparison of changes in
+      Revealed Comparative Advantage (RCA)
+      between the period before 2012 and
+      afterwards, focusing on the top
+      countries by total level of DL activity.
+    </h5>    
+    <img class="img-responsive chart" src="{{url_for('static', filename='figure_5.png')}}" alt='figure_5'>
+  </div>
+</div>
+
+</div>
+
 {% endblock %}
 
 {% block styles %}

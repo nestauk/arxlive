@@ -2,7 +2,6 @@
 
 cd arxlive-search
 yarn build
-# cp build/static/css/*.css ../arxlive/static/arxlive-search.css
 cp build/static/js/*.js ../arxlive/static/arxlive-search.js
 cd ..
 . venv/bin/activate

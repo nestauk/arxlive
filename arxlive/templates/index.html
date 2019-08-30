@@ -14,7 +14,7 @@
 <p>
   <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
   is an open source platform for live monitoring of innovation activity in
-  <a href="https://arxiv.org/"> arXiv pre-prints</a>, which are predominantly physical, computational and quantitative research disciplines.
+  <a href="https://arxiv.org/" target="_blank"> arXiv pre-prints</a>, which are predominantly physical, computational and quantitative research disciplines.
   Underpinning
   <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
   is a data analysis and production system, which orchestrates a stable pipeline of data collection, enrichment and machine learning.
@@ -22,8 +22,17 @@
 
 <br>
 <h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
-<h3> <a href="{{ url_for('hierarxy') }}">HierarXy</a>: search for novel activity in arXiv articles.</h3>
-<h3><a href="{{ url_for('keywords') }}">Keyword Factory</a>: expand your technical vocabulary.</h3>
+<h3> <a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5">HierarXy</a>: search for novel activity in arXiv articles, such as:</h3>
+<ul>
+  <li> <a href="{{ url_for('hierarxy') }}?q=privacy%20social%20media&count_citations_article[min]=5&cats[0][0]=Latin%20America%20and%20the%20Caribbean"> Privacy and social media, from South American researchers, by novelty.</a></li>
+  <li> <a href="{{ url_for('hierarxy') }}?q=Cybersecurity%20AI&count_citations_article[min]=5&sort=_score_desc"> The intersection between Cybersecurity and AI, by relevance.</a></li>  
+</ul>
+<h3><a href="{{ url_for('keywords') }}">Keyword Factory</a>: expand your technical vocabulary, for example relating to:</h3>
+<ul>
+  <li> <a href="{{ url_for('keywords') }}graphene"> graphene</a></li>
+  <li> <a href="{{ url_for('keywords') }}drone"> drones</a></li>
+  <li> <a href="{{ url_for('keywords') }}reinforcement learning"> reinforcement learning</a></li>
+</ul>
 <br>
 
 <h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> papers</h2>
@@ -39,22 +48,22 @@
 </p>
 
 <a href="{{ url_for('deepchange') }}"><h3>Deep learning, deep change</h3></a>
-<h3><i> In the pipeline:</i> Gender Diversity in AI <a href="https://www.nesta.org.uk/report/gender-diversity-ai/">(details)</a> </h3>
+<h3><i> In the pipeline:</i> Gender Diversity in AI <a href="https://www.nesta.org.uk/report/gender-diversity-ai/"  target="_blank">(details)</a> </h3>
 
 <br>
 <h2> Open source </h2>
 All of our code is open source, and we only use open source data in the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> platform. Check out our
-<a href="https://github.com/nestauk/nesta"> GitHub repo </a>
+<a href="https://github.com/nestauk/nesta"  target="_blank"> GitHub repo </a>
 to understand (or even contribute) the inner workings of <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">. In addition to arXiv data, we also use open data from
-<a href="https://www.grid.ac/"> GRID</a>,
-<a href="https://academic.microsoft.com/home"> Microsoft Academic Graph</a> and
-<a href="https://datahub.io/core"> DataHub</a>.
+<a href="https://www.grid.ac/" target="_blank"> GRID</a>,
+<a href="https://academic.microsoft.com/home" target="_blank"> Microsoft Academic Graph</a> and
+<a href="https://datahub.io/core" target="_blank"> DataHub</a>.
 <br>
 <br>
 
 <h2> Blogs </h2>
-<h4> 02-Jul-19: <a style="display: inline; clear: none;" href="https://www.nesta.org.uk/blog/bringing-arxiv-data-life/">Bringing arxiv data to life</a></h4>
-<h4> 19-Apr-19: <a style="display: inline" href="https://www.nesta.org.uk/blog/is-ai-eating-software-an-analysis-of-aiml-research-trends-using-scientific-pre-prints/">Is AI eating software?</a></h4>
+<h4> 02-Jul-19: <a style="display: inline; clear: none;" href="https://www.nesta.org.uk/blog/bringing-arxiv-data-life/" target="_blank">Bringing arxiv data to life</a></h4>
+<h4> 19-Apr-19: <a style="display: inline" href="https://www.nesta.org.uk/blog/is-ai-eating-software-an-analysis-of-aiml-research-trends-using-scientific-pre-prints/" target="_blank">Is AI eating software?</a></h4>
 
 <br>
 <br>
