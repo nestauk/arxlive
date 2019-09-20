@@ -5,7 +5,7 @@ URL = ("https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4."
        "eu-west-2.es.amazonaws.com/arxiv_v2/_search")
 
 
-def common_query(query, search_field, cutoff_frequency=0.001):
+def common_query(query, search_field, cutoff_frequency=0.0001):
     return {
         "common": {
             search_field: {
@@ -22,7 +22,7 @@ def regular_query(query, search_field):
 
 
 def significant_text_query(query_json, return_field, size,
-                           shard_size=1000,
+                           shard_size=5000,
                            alg='jlh',
                            agg_name='my_agg'):
     return {
