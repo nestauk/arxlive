@@ -8,6 +8,7 @@ class KeywordForm(Form):
 
 
 def keywords(query=''):
+    query = query.lower()
     form = KeywordForm(request.form)
     if request.method == 'POST':
         query = request.form['name']

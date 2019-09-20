@@ -5,7 +5,7 @@ URL = ("https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4."
        "eu-west-2.es.amazonaws.com/arxiv_v2/_search")
 
 
-def common_query(query, search_field, cutoff_frequency=0.0001):
+def common_query(query, search_field, cutoff_frequency=0.001):
     return {
         "common": {
             search_field: {
@@ -23,7 +23,7 @@ def regular_query(query, search_field):
 
 def significant_text_query(query_json, return_field, size,
                            shard_size=5000,
-                           alg='jlh',
+                           alg='jlh', 
                            agg_name='my_agg'):
     return {
         "query": query_json,
@@ -46,7 +46,7 @@ def significant_text_query(query_json, return_field, size,
 
 
 def _make_query(q, search_field,
-                query_type,
+                query_type, min_score=8,
                 **kwargs):
     query, agg_name = significant_text_query(query_type(q, search_field),
                                              **kwargs)
@@ -54,7 +54,8 @@ def _make_query(q, search_field,
                       headers={'Content-Type': 'application/json'})
     aggs = r.json()['aggregations']
     buckets = aggs[agg_name]['keywords']['buckets']
-    return {row['key']: row['score'] for row in buckets}
+    return {row['key']: row['score']
+            for row in buckets if row['score'] > min_score}
 
 
 STOPWORDS = _make_query(q='and of but on by however or',
