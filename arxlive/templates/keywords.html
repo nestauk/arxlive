@@ -23,7 +23,7 @@
   is associated with:
   <br>  <br>
   {% for message in messages %}
-  <div class="alert alert-info">{{ message[1] }}</div>
+  <div class="alert alert-info">{{ message[1]|safe }}</div>
   {% endfor %}
   <p> Using these keywords in combination
     with <b style="color:red">{{ query }}</b> will

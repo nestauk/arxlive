@@ -161,10 +161,10 @@ class App extends Component {
 		      }}/>
 		      <ViewSwitcherToggle/>
 		      <SortingSelector options={[
-			  {label:"Novelty",
-			   field:"metric_novelty_article", order:"desc"},
 			  {label:"Search relevance",
 			   field:"_score", order:"desc"},
+			  {label:"Novelty",
+			   field:"metric_novelty_article", order:"desc"},                          
 			  {label:"Latest Releases",
 			   field:"date_created_article", order:"desc"},
 			  {label:"Earliest Releases",

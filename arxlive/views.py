@@ -1,46 +1,10 @@
 from flask import render_template, flash, request, redirect, url_for
-import requests
-import json
 from wtforms import Form, TextField, validators
-
-URL = ("https://search-arxlive-"
-       "t2brq66muzxag44zwmrcfrlmq4."
-       "eu-west-2.es.amazonaws.com/"
-       "arxiv_v1/_search")
-
-
-def make_query(url, q, alg, field, shard_size=1000, size=15):
-    agg_name = 'my_sample'
-    query = {"query": {"match": {field: q}},
-             "size": 0,
-             "aggregations": {
-                 agg_name: {
-                     "sampler": {"shard_size": shard_size},
-                     "aggregations": {
-                        "keywords": {
-                            "significant_text": {
-                                "size": size,
-                                "field": field,
-                                alg: {}
-                            }
-                        }
-                     }
-                 }
-             }}
-    r = requests.post(url, data=json.dumps(query),
-                      headers={'Content-Type': 'application/json'})
-    aggs = r.json()['aggregations']
-    buckets = aggs[agg_name]['keywords']['buckets']
-    return [row['key'] for row in buckets]
+from .keyword_factory import make_query
 
 
 class KeywordForm(Form):
     name = TextField('Name:', validators=[validators.required()])
-
-
-STOPWORDS = ['']
-#make_query(url=URL, q='and of but on by', alg='jlh',
-#field='textBody_abstract_article', size=100)
 
 
 def keywords(query=''):
@@ -50,13 +14,15 @@ def keywords(query=''):
         return redirect(url_for('keywords', query=query))
 
     if len(query.strip()) > 0:
-        results = make_query(url=URL, q=query, alg='jlh',
-                             field='textBody_abstract_article')
-        results = [r for r in results
-                   if r.replace("'", "")[:-1] not in results
-                   and r not in STOPWORDS  # basic plurals
-                   and r not in query.split()]
-        flash(', '.join(results))
+        results = make_query(query, size=25,
+                             search_field='textBody_abstract_article',
+                             return_field='terms_tokens_article')
+        for i, _ in enumerate(results):
+            if i != len(results) - 1:
+                results[i] += ',&nbsp&nbsp&nbsp'
+            if i > 0 and i % 5 == 0:
+                results[i] += '</br>'
+        flash(''.join(results))
     return render_template('keywords.html',
                            query=query,
                            form=form)
