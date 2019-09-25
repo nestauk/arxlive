@@ -24,14 +24,15 @@
 <h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
 <h3> <a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5">HierarXy</a>: search for novel activity in arXiv articles, such as:</h3>
 <ul>
-  <li> <a href="{{ url_for('hierarxy') }}?q=privacy%20social%20media&count_citations_article[min]=5&cats[0][0]=Latin%20America%20and%20the%20Caribbean"> Privacy and social media, from South American researchers, by novelty.</a></li>
-  <li> <a href="{{ url_for('hierarxy') }}?q=Cybersecurity%20AI&count_citations_article[min]=5&sort=_score_desc"> The intersection between Cybersecurity and AI, by relevance.</a></li>  
+  <li> <a href="{{ url_for('hierarxy') }}?q=privacy%20social%20media&count_citations_article[min]=5&cats[0][0]=Latin%20America%20and%20the%20Caribbean&sort=metric_novelty_article_desc"> Privacy and social media, from South American researchers, by novelty.</a></li>
+  <li> <a href="{{ url_for('hierarxy') }}?q=Cybersecurity%20AI&count_citations_article[min]=5&sort=_score_desc"> The intersection between Cybersecurity and AI, by relevance.</a></li>
+  <li> <a href="{{ url_for('hierarxy') }}?q=ai%20cybersecurity&year_of_article[min]=2014&year_of_article[max]=2020&count_citations_article[min]=5&metric_novelty_article[min]=80&sort=_score_desc"> ... or the most recent, most novel research in the intersection of Cybersecurity and AI.</a></li>
 </ul>
 <h3><a href="{{ url_for('keywords') }}">Keyword Factory</a>: expand your technical vocabulary, for example relating to:</h3>
 <ul>
   <li> <a href="{{ url_for('keywords') }}graphene"> graphene</a></li>
-  <li> <a href="{{ url_for('keywords') }}drone"> drones</a></li>
-  <li> <a href="{{ url_for('keywords') }}reinforcement learning"> reinforcement learning</a></li>
+  <li> <a href="{{ url_for('keywords') }}big data"> big data</a></li>
+  <li> <a href="{{ url_for('keywords') }}autonomous vehicles"> autonomous vehicles</a></li>
 </ul>
 <br>
 

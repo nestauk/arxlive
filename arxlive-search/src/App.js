@@ -4,9 +4,9 @@ import extend from 'lodash/extend';
 import { SearchkitManager,SearchkitProvider,
 	 SearchBox, Pagination, HitsStats,
          SortingSelector, NoHits,
-	 CheckboxFilter, ResetFilters, RangeFilter,
-	 ViewSwitcherToggle, Hits, BoolMust,
-	 RangeQuery, HierarchicalRefinementFilter,
+	 ResetFilters, RangeFilter,
+	 ViewSwitcherToggle, Hits, 
+	 HierarchicalRefinementFilter,
 	 GroupedSelectedFilters,
 	 Layout, TopBar, LayoutBody, LayoutResults,
 	 ActionBar, ActionBarRow, SideBar } from 'searchkit';
@@ -16,12 +16,12 @@ import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v1/";
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v2/";
 
 const searchkit = new SearchkitManager(host, {
     httpHeaders:{"Content-Type":"application/json",
 		 "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
-		 "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com",
+		 "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com"
 		}
 });
 
@@ -85,7 +85,7 @@ const HelloWorldComponent = (props)=> {
 	marginTop: '20px',        
 	marginBottom: '-60px',
 	lineHeight: '20px',
-	fontSize: '18',
+	fontSize: '18px',
     };
     const subDivStyle = {
 	lineHeight: '22px',
@@ -120,7 +120,7 @@ const HelloWorldComponent = (props)=> {
 class App extends Component {
     render() {
         const searchStyle = {
-	    fontSize: '100',
+	    fontSize: '100px',
         };
         
 	return (
@@ -146,8 +146,9 @@ class App extends Component {
 		    {/* /> */}
 		    <RangeFilter min={1990} max={2020} field="year_of_article" id="year_of_article" title="Year of article" showHistogram={true}/>
                     <RangeFilter min={0} max={300} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
-		    <RangeFilter min={-300} max={250} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
-		    <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/>
+                    <RangeFilter min={0} max={300} field="metric_citations_article" id="metric_citations_article" title="Normalized citations" showHistogram={true}/>
+		    <RangeFilter min={-300} max={300} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
+		    {/* <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/> */}
 		  <HierarchicalRefinementFilter field="json_location_article" title="Author location" id="cats"/>
 		  <HierarchicalRefinementFilter field="json_fieldOfStudy_article" title="Field of study" id="fos"/>
 		  <HierarchicalRefinementFilter field="json_category_article" title="arXiv category" id="cats2"/>

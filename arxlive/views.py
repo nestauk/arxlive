@@ -19,10 +19,12 @@ def keywords(query=''):
                              search_field='textBody_abstract_article',
                              return_field='terms_tokens_article')
         for i, _ in enumerate(results):
+            r = results[i].replace(' ', '-')
+            href = url_for('keywords', query=results[i])
+            r = f'<a class="keywords" href="{href}">{r}</a>'
             if i != len(results) - 1:
-                results[i] += ',&nbsp&nbsp&nbsp'
-            if i > 0 and i % 5 == 0:
-                results[i] += '</br>'
+                r += ',&nbsp&nbsp&nbsp '
+            results[i] = r
         flash(''.join(results))
     return render_template('keywords.html',
                            query=query,
