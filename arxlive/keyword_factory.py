@@ -23,7 +23,7 @@ def regular_query(query, search_field):
 
 def significant_text_query(query_json, return_field, size,
                            shard_size=5000,
-                           alg='jlh', 
+                           alg='jlh',
                            agg_name='my_agg'):
     return {
         "query": query_json,
@@ -62,6 +62,7 @@ STOPWORDS = _make_query(q='and of but on by however or',
                         query_type=regular_query,
                         search_field='textBody_abstract_article',
                         return_field='textBody_abstract_article',
+                        min_score=0,
                         size=75)
 
 
@@ -74,6 +75,8 @@ def _initial_query(q, **kwargs):
 
 def make_query(q, search_field, return_field, size,
                boost=2.5, min_overlap=0.5, **kwargs):
+    if q in STOPWORDS:
+        return []
     results = _initial_query(q, search_field=search_field,
                              return_field=return_field,
                              size=size,
