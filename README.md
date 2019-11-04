@@ -1,5 +1,5 @@
 # arxlive
-arXlive front end using Flask, Zappa and AWS Lambda
+[arXlive](https://arxlive.org) front end using Flask, Zappa and AWS Lambda
 
 To deploy:
 1. `yarn` from inside the `arxlive-search` directory to install javascript modules
