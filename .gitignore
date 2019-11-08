@@ -109,3 +109,6 @@ venv.bak/
 *bin
 *npy
 *pickle
+
+# arxlive search built js
+arxlive/static/arxlive-search.js

@@ -1,0 +1,11 @@
+.chart {
+    float: right;
+}
+
+.chart-container {
+    overflow: auto
+}
+
+.center-container {
+    margin: auto;max-width: 750px;
+}

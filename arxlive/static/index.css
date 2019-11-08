@@ -1,0 +1,22 @@
+@font-face {
+  font-family: AvertaRegular;
+  src: url("index.css") format("opentype");
+}
+
+body {
+    font-family: "AvertaRegular", sans-serif;
+    background-color: #FFFFFF; 
+    color: #231F20;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.footer {
+    font-size: 10px;
+    padding: 10px 0px;
+    color: #FFF;
+    position: relative;
+    margin: 0px auto;
+    text-align: justify;
+    line-height: 100%;
+}
