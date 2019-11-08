@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block page_title %}keyword factory{% endblock %}
+
+{% block page_content %}
+
+  <h1>Keyword Factory</h1>
+  <br>
+  <p> This tool helps you to expand your <b>technical vocabulary</b> using the arXiv dataset. <br> Note that terms which occur infrequently in arXiv articles will not return good (if any) results. <br> <a style="font-size:14px" href="https://towardsdatascience.com/big-fast-nlp-with-elasticsearch-72ffd7ef8f2e"> Read about our method here.</a> </p>
+  <br>
+  <form action="" method="post" role="form" autocomplete="off">
+    {{ form.csrf }}
+    <div class="form-group">
+      <input type="text" class="form-control"
+	     style="height: 60px; font-size: 30px"
+	     id="name" name="name"
+	     placeholder="e.g. 'graphene',  'drone', 'neural network' ...">
+    </div>
+  </form>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <br>
+  <h2> {{ query }} </h2>
+  is associated with:
+  <br>  <br>
+  {% for message in messages %}
+  <div class="alert alert-info">{{ message[1]|safe }}</div>
+  {% endfor %}
+  <p> Using these keywords in combination
+    with <b style="color:red">{{ query }}</b> will
+    help you expand your search horizons. 
+  </p>
+  {% endif %}
+  {% endwith %}
+
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='deepchange.css')}}">
+{{ super() }}
+{% endblock %}
+
+

@@ -1,6 +1,47 @@
 {% extends "bootstrap/base.html" %}
 {% block head %}
 {{ super() }}
+
+{% assets "nesta.otf" %}
+<style type="text/css">
+  @font-face {
+    font-family: AvertaRegular;
+    src: url("{{ ASSET_URL }}") format("opentype");
+  }
+  body {
+      font-family: "AvertaRegular", sans-serif;
+      background-color: #FFFFFF;
+      color: #231F20;
+      font-size: 18px;
+      line-height: 1.8;
+  }
+  .keywords:hover{
+      background-color: #e9f5fb;
+      color: red;
+      cursor: pointer;
+      text-decoration: none;
+  }
+  #footer {
+      font-size: 10px;
+      padding: 10px 0px;
+      position: relative;
+      margin: 0px auto;
+      text-align: justify;
+      line-height: 100%;
+  }
+  hr {
+      border: none;
+      height: 1px;
+      /* Set the hr color */
+      color: #999; /* old IE */
+      background-color: #999; /* Modern Browsers */
+  }
+  
+</style>
+{% endassets %}
+
+
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}"> -->
 <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
 <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon-96x96.png') }}">
@@ -11,23 +52,28 @@
 {% block navbar %}
     <nav class="navbar navbar-default">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <img alt="arXlive", height="20px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('deepchange') }}">DeepChange</a></li>
-                <li><a href="{{ url_for('hierarxy') }}">hierarXy</a></li>
-            </ul>
-        </div>
+	<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="{{ url_for('index') }}">
+		<img alt="arXlive", height="20px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+	    </a>
+
+	    <a class="navbar-brand" href="{{ url_for('index') }}">
+	      <img alt="nesta", height="20px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
+	    </a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+		<li><a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5">HierarXy</a></li>
+		<li><a href="{{ url_for('keywords') }}">Keyword Factory</a></li>
+		<li><a href="{{ url_for('deepchange') }}">DeepChange</a></li>
+	    </ul>
+	</div>
     </div>
 </nav>
 {% endblock %}
@@ -35,5 +81,15 @@
 {% block content %}
 <div class="container">
     {% block page_content %}{% endblock %}
+
+    <div id="footer">
+      <hr>
+      <p>
+	<a href="http://www.nesta.org.uk" target="_blank">Nesta</a>
+	is an innovation foundation. We back new ideas to tackle the big challenges of our time. Nesta is a registered charity in England and Wales 1144091 and Scotland SC042833. Our main address is 58 Victoria Embankment, London, EC4Y 0DS. You can reach us by phone on 020 7438 2500 or drop us a line at <a href="mailto:information@nesta.org.uk"> information@nesta.org.uk </a>. All our work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License, unless it says otherwise. We hope you find it useful.
+      </p>
+    </div>
+
 </div>
+
 {% endblock %}

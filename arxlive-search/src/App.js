@@ -2,34 +2,26 @@ import React, { Component } from 'react';
 
 import extend from 'lodash/extend';
 import { SearchkitManager,SearchkitProvider,
-	 SearchBox, RefinementListFilter, Pagination,
-	 HierarchicalMenuFilter, HitsStats, SortingSelector, NoHits,
-	 CheckboxFilter, ResetFilters, RangeFilter,
-	 NumericRefinementListFilter, ViewSwitcherHits,
-	 ViewSwitcherToggle,
-	 DynamicRangeFilter, Hits, HitItemProps, BoolMust,
-	 RangeQuery, HierarchicalRefinementFilter,
-	 InputFilter, GroupedSelectedFilters,
+	 SearchBox, Pagination, HitsStats,
+	 SortingSelector, NoHits,
+	 ResetFilters, RangeFilter,
+	 ViewSwitcherToggle, Hits,
+	 HierarchicalRefinementFilter,
+	 GroupedSelectedFilters,
 	 Layout, TopBar, LayoutBody, LayoutResults,
 	 ActionBar, ActionBarRow, SideBar } from 'searchkit';
 
-import { DateRangeFilter,
-	 DateRangeCalendar } from "searchkit-datefilter";
-import * as moment from "moment";
-
 import './index.css';
-import '../node_modules/searchkit-datefilter/release/theme.css';
-
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v1/";
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v3/";
 
 const searchkit = new SearchkitManager(host, {
     httpHeaders:{"Content-Type":"application/json",
 		 "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
-		 "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com",
+		 "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com"
 		}
 });
 
@@ -38,6 +30,11 @@ const HitItem = (props)=> {
     const {bemBlocks, result} = props;
     const source = extend({}, result._source);
     const spaces = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+    let novelty = "";
+    if(source.metric_novelty_article){
+	novelty = "Novelty: "+source.metric_novelty_article.toFixed(2);
+    }
+
     return (
 	<div className={bemBlocks.item().mix(bemBlocks.container("item"))} data-qa="hit">
 	  <div className={bemBlocks.item("subitem")}>
@@ -50,24 +47,24 @@ const HitItem = (props)=> {
 	    </a>
 	    {/* Date and authors */}
 	    <h4 className={bemBlocks.item("date_created_article")}
-	        dangerouslySetInnerHTML={{__html:source.date_created_article}}>
-	    </h4>            
+		dangerouslySetInnerHTML={{__html:source.date_created_article}}>
+	    </h4>
 	    <h3 className={bemBlocks.item("terms_authors_article")}>
 	      {source.terms_authors_article &&
 	       source.terms_authors_article
 	       .map(t => <span>{t}</span>)
 	       .reduce((prev, curr) => [prev, ', ', curr])}
-	    </h3>            
+	    </h3>
 	    <h4 className={bemBlocks.item("metric_novelty_article")}
-	        dangerouslySetInnerHTML={{__html:"Citations: "+source.count_citations_article+spaces+"Novelty: "+source.metric_novelty_article.toFixed(2)}}>
+		dangerouslySetInnerHTML={{__html:"Citations: "+source.count_citations_article+spaces+novelty}}>
 	    </h4>
 	    {/* Affiliations */}
-	    <h4 className={bemBlocks.item("terms_institutes_article")}>
-	      {source.terms_institutes_article &&
-	       source.terms_institutes_article
-	       .map(t => <span>{t}</span>)
-	       .reduce((prev, curr) => [prev, ', ', curr])}
-	    </h4>
+	    {/* <h4 className={bemBlocks.item("terms_institutes_article")}> */}
+	    {/*   {source.terms_institutes_article && */}
+	    {/*    source.terms_institutes_article */}
+	    {/*    .map(t => <span>{t}</span>) */}
+	    {/*    .reduce((prev, curr) => [prev, ', ', curr])} */}
+	    {/* </h4> */}
 	    {/* Abstract text */}
 	    <br></br>
 	    <div className={bemBlocks.item("textBody_abstract_article")}>
@@ -85,36 +82,43 @@ const HelloWorldComponent = (props)=> {
 	textAlign: 'center', // <-- the magic
 	color: 'gray',
 	padding: '0',
-	marginTop: '20px',        
+	marginTop: '20px',
 	marginBottom: '-60px',
 	lineHeight: '20px',
-	fontSize: '18',
+	fontSize: '18px',
     };
     const subDivStyle = {
 	lineHeight: '22px',
     };
 
     const bStyle = {
-	color: 'blue',
+	color: '#000',
     };
+
+    const tinyStyle = {
+	fontSize: '12px',
+    };    
 
     return (
 	<div style={divStyle}>
 	  <br/>
-	  <b style={bStyle}>HierarXy</b> leverages
-	  <b style={bStyle}> Machine Learning </b>
-	  to rank documents by <b style={bStyle}> novelty </b>
-	  <br/>
 	  <div style={subDivStyle}>
+	    <b style={bStyle}>HierarXy</b> is a
+	    <b style={bStyle}> contextual search engine </b> that
+	    <b style={bStyle}> expansively searches </b>
+            <br/> arXiv for terms which are
+            <b style={bStyle}> contextually similar </b>
+            to your query.
 	    <br/>
-	    It sits on a <b style={bStyle}>needle-in-a-haystack search engine </b>
-	    <br/>
-	    so you can perform
-            <b style={bStyle}> wider searches</b> with
-            <b style={bStyle}> fewer queries</b>.
+            <br/>
 	  </div>
+          Articles are
+	  <b style={bStyle}> ranked by novelty</b> to help you
+	  find <b style={bStyle}> rare gems </b> in arXiv.
           <br/>
-          <a href="">Find out more</a>
+          <br/>
+	  <a href="https://towardsdatascience.com/big-fast-nlp-with-elasticsearch-72ffd7ef8f2e">Read about our method here.</a>
+          <p style={tinyStyle}>Apologies to mobile users.</p>          
 	</div>
     );
 };
@@ -122,35 +126,38 @@ const HelloWorldComponent = (props)=> {
 
 class App extends Component {
     render() {
-        const searchStyle = {
-	    fontSize: '100',
-        };
-        
+	const searchStyle = {
+	    fontSize: '100px',
+	};
+
 	return (
 	    <SearchkitProvider searchkit={searchkit}>
 	      <Layout>
 		<TopBar>
 		  <SearchBox style={searchStyle}
-                             autofocus={true}
+			     autofocus={true}
 			     searchOnChange={false}
 			     prefixQueryFields={["title_of_article^10",
-						 "textBody_abstract_article"]}/>
-	        </TopBar>
-                
-	        <HelloWorldComponent/>
+                                                 "terms_tokens_article"]}/>
+            
+            {/* "textBody_abstract_article"]}/> */}
+		</TopBar>
+
+		<HelloWorldComponent/>
 
 		<LayoutBody>
 		  <SideBar>
 		    {/* <DateRangeFilter id="event_date" title="Date range" */}
-		    {/* 		     fromDateField="date_created_article" */}
-		    {/* 		     toDateField="date_created_article" */}
-		    {/* 		     calendarComponent={DateRangeCalendar} */}
-		    {/* 		     rangeFormatter={(v) => moment(parseInt(""+v)).format('DD/MM/YY')} */}
+		    {/*			     fromDateField="date_created_article" */}
+		    {/*			     toDateField="date_created_article" */}
+		    {/*			     calendarComponent={DateRangeCalendar} */}
+		    {/*			     rangeFormatter={(v) => moment(parseInt(""+v)).format('DD/MM/YY')} */}
 		    {/* /> */}
 		    <RangeFilter min={1990} max={2020} field="year_of_article" id="year_of_article" title="Year of article" showHistogram={true}/>
-                    <RangeFilter min={0} max={100} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
-		    <RangeFilter min={-300} max={250} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
-		    <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/>
+		    <RangeFilter min={0} max={300} field="count_citations_article" id="count_citations_article" title="Citation count" showHistogram={true}/>
+		    <RangeFilter min={0} max={300} field="metric_citations_article" id="metric_citations_article" title="Normalized citations" showHistogram={true}/>
+		    <RangeFilter min={-300} max={300} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
+		    {/* <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/> */}
 		  <HierarchicalRefinementFilter field="json_location_article" title="Author location" id="cats"/>
 		  <HierarchicalRefinementFilter field="json_fieldOfStudy_article" title="Field of study" id="fos"/>
 		  <HierarchicalRefinementFilter field="json_category_article" title="arXiv category" id="cats2"/>
@@ -164,10 +171,14 @@ class App extends Component {
 		      }}/>
 		      <ViewSwitcherToggle/>
 		      <SortingSelector options={[
-			  {label:"Novelty",
-			   field:"metric_novelty_article", order:"desc"},
 			  {label:"Search relevance",
 			   field:"_score", order:"desc"},
+			  {label:"Citations",
+			   field:"count_citations_article", order:"desc"},
+			  {label:"Normalized citations",
+			   field:"metric_citations_article", order:"desc"},
+			  {label:"Novelty",
+			   field:"metric_novelty_article", order:"desc"},
 			  {label:"Latest Releases",
 			   field:"date_created_article", order:"desc"},
 			  {label:"Earliest Releases",
@@ -189,7 +200,8 @@ class App extends Component {
 				   "textBody_abstract_article",
 				   "date_created_article",
 				   "terms_authors_article",
-                                   "count_citations_article",
+				   "metric_citations_article",
+				   "count_citations_article",
 				   "metric_novelty_article",
 				   "json_category_article",
 				   "terms_institutes_article"]}

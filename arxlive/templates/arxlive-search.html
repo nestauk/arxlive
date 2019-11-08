@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='arxlive-search.js') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='arxlive-search.js') }}"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 {{ super() }}
 {% endblock %}

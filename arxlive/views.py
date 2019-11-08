@@ -1,4 +1,34 @@
-from flask import render_template
+from flask import render_template, flash, request, redirect, url_for
+from wtforms import Form, TextField, validators
+from .keyword_factory import make_query
+
+
+class KeywordForm(Form):
+    name = TextField('Name:', validators=[validators.required()])
+
+
+def keywords(query=''):
+    query = query.lower()
+    form = KeywordForm(request.form)
+    if request.method == 'POST':
+        query = request.form['name']
+        return redirect(url_for('keywords', query=query))
+
+    if len(query.strip()) > 0:
+        results = make_query(query, size=25,
+                             search_field='textBody_abstract_article',
+                             return_field='terms_tokens_article')
+        for i, _ in enumerate(results):
+            r = results[i].replace(' ', '-')
+            href = url_for('keywords', query=results[i])
+            r = f'<a class="keywords" href="{href}">{r}</a>'
+            if i != len(results) - 1:
+                r += ',&nbsp&nbsp&nbsp '
+            results[i] = r
+        flash(''.join(results))
+    return render_template('keywords.html',
+                           query=query,
+                           form=form)
 
 
 def index():

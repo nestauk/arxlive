@@ -8,6 +8,9 @@
         "s3_bucket": "arxlive-zappa",
         "keep_warm_expression": "rate(6 minutes)",
         "environment_variables": {"CONFIG_MODE": "production"},
-        "exclude": ["arxlive-search"]
+        "exclude": ["arxlive-search"],
+	"certificate_arn": "arn:aws:acm:us-east-1:195787726158:certificate/fc0615f6-3991-4c97-9454-d8271a85d7d8"
+	"domain": "arxlive.org",
+	"route53_enabled": false
     }
 }

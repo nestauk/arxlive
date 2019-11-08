@@ -1,16 +1,86 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<h2>Welcome to arXlive</h2>
-<p>In the past two decades, it has become the norm for entirely new industries to
-arise in just a few years. Traditional means of monitoring industrial and academic
-activity are relatively slow, and this leads to laggy policy decisions - which means
-that the full benefits of these industries will not be distributed evenly. In
-response to this, we have developed <strong>arXlive</strong>.</p>
 
-<a href="{{ url_for('deepchange') }}"><h3>Deep learning, deep change</h3></a>
-<a href="{{ url_for('hierarxy') }}"><h3>hierarXy</h3></a>
+<div style="max-width:100%; margin-top:30px; margin-bottom:60px;">
+  <img alt="arXlive", height="60px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+  &nbsp   &nbsp   &nbsp
+  <a href="https://www.nesta.org.uk">
+    <img alt="nesta", height="60px" src="{{ url_for('static', filename='nesta-logo-60h.png') }}">
+  </a>
+</div>
 
-<p>Read the <a href="https://arxiv.org/pdf/1808.06355.pdf">original paper (PDF)</a></p>
-<p><a href="{{ url_for('faq') }}">Methods and FAQ</a></p>
+<h2> Explore emerging trends in research data. </h2>
+<p>
+  <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+  is an open source platform for live monitoring of innovation activity in
+  <a href="https://arxiv.org/" target="_blank"> arXiv pre-prints</a>, which are predominantly physical, computational and quantitative research disciplines.
+  Underpinning
+  <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">
+  is a data analysis and production system, which orchestrates a stable pipeline of data collection, enrichment and machine learning.
+</p>
+
+<h3 style="color:#631607"> arXiv: a window on innovation. </h3>
+<p>
+  arXiv is full of ground-breaking research, from the first report
+  on the
+  <a href="https://arxiv.org/abs/cond-mat/0410550" target="_blank">discovery of graphene</a>, to seminal
+  <a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank">advances in AI research </a>
+  and the discovery of <a href="https://arxiv.org/abs/1207.7214" target="_blank"> new building blocks of matter</a>.
+</p>
+<h3 style="color:#631607">
+  Hyperspecialist fields are hard to navigate.
+</h3>
+<p>
+  Broad contextually relevant searches are hard to formulate, often requiring complex 'advanced' searches and expert-driven lists of keywords. <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">'s <a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5" target="_blank">hierarXy</a> search engine  <b style="font-weight:bolder"> helps you see what you're missing</b> by explicitly performing contextual searches, so that you don't get stuck searching for rare gems; whilst the <a href="{{ url_for('keywords') }}" target="_blank">Keyword Factory</a> allows you to expand your technical vocabulary for making more expansive searches.
+</p>
+
+<br>
+<h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
+<h3> <a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5" target="_blank">HierarXy</a>: search for novel activity in arXiv articles, such as:</h3>
+<ul>
+  <li> <a href="{{ url_for('hierarxy') }}?q=privacy%20social%20media&count_citations_article[min]=5&cats[0][0]=Latin%20America%20and%20the%20Caribbean&sort=metric_novelty_article_desc" target="_blank"> Privacy and social media, from South American researchers, by novelty.</a></li>
+  <li> <a href="{{ url_for('hierarxy') }}?q=ai%20cybersecurity&year_of_article[min]=2014&year_of_article[max]=2020&count_citations_article[min]=5&metric_novelty_article[min]=80&sort=_score_desc" target="_blank"> The most recent, most novel research in the intersection of Cybersecurity and AI.</a></li>
+  <li> <a href="{{ url_for('hierarxy') }}?q=BERT&year_of_article[min]=1990&year_of_article[max]=2017&count_citations_article[min]=4&count_citations_article[max]=300&sort=_score_desc" target="_blank">Who was doing something like BERT </a> before <a href="https://arxiv.org/abs/1810.04805" target="_blank">BERT</a> was invented in 2018?</a></li>
+</ul>
+<h3><a href="{{ url_for('keywords') }}" target="_blank">Keyword Factory</a>: expand your technical vocabulary, for example relating to:</h3>
+<ul>
+  <li> <a href="{{ url_for('keywords') }}graphene" target="_blank"> graphene</a></li>
+  <li> <a href="{{ url_for('keywords') }}big data" target="_blank"> big data</a></li>
+  <li> <a href="{{ url_for('keywords') }}autonomous vehicles" target="_blank"> autonomous vehicles</a></li>
+</ul>
+<br>
+
+<h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> papers</h2>
+<p>
+  In recent decades it has become the norm for entirely new industries to
+  arise in just a few years.
+  Traditional means of monitoring industrial and academic
+  activity are relatively slow, and this leads to laggy policy
+  decisions - which means
+  that the full benefits of these industries will not be distributed
+  evenly. As our team continue to publish academic outputs using
+  arXiv data we will integrate these into <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">.
+</p>
+
+<a href="{{ url_for('deepchange') }}" target="_blank"><h3>Deep learning, deep change</h3></a>
+<h3><i> In the pipeline:</i> Gender Diversity in AI <a href="https://www.nesta.org.uk/report/gender-diversity-ai/"  target="_blank">(details)</a> </h3>
+
+<br>
+<h2> Open source </h2>
+All of our code is open source, and we only use open source data in the <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> platform. Check out our
+<a href="https://github.com/nestauk/nesta"  target="_blank"> GitHub repo </a>
+to understand (or even contribute) the inner workings of <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">. In addition to arXiv data, we also use open data from
+<a href="https://www.grid.ac/" target="_blank"> GRID</a>,
+<a href="https://academic.microsoft.com/home" target="_blank"> Microsoft Academic Graph</a> and
+<a href="https://datahub.io/core" target="_blank"> DataHub</a>.
+<br>
+<br>
+
+<h2> Blogs </h2>
+<h4> 25-Oct-19: <a style="display: inline; clear: none;" href="https://www.nesta.org.uk/blog/arxlive/" target="_blank">arXlive: nesta’s first real-time tool for monitoring innovation</a></h4>
+<h4> 25-Oct-19: <a style="display: inline; clear: none;" href="https://towardsdatascience.com/big-fast-nlp-with-elasticsearch-72ffd7ef8f2e" target="_blank">Big, fast human-in-the-loop NLP with Elasticsearch</a></h4>
+<h4> 02-Jul-19: <a style="display: inline; clear: none;" href="https://www.nesta.org.uk/blog/bringing-arxiv-data-life/" target="_blank">Bringing arxiv data to life</a></h4>
+<h4> 19-Apr-19: <a style="display: inline" href="https://www.nesta.org.uk/blog/is-ai-eating-software-an-analysis-of-aiml-research-trends-using-scientific-pre-prints/" target="_blank">Is AI eating software?</a></h4>
+
 {% endblock %}
