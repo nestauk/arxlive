@@ -1,8 +1,6 @@
 import requests
 import json
-
-URL = ("https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4."
-       "eu-west-2.es.amazonaws.com/arxiv_v2/_search")
+from config import Config
 
 
 def common_query(query, search_field, cutoff_frequency=0.001):
@@ -50,7 +48,7 @@ def _make_query(q, search_field,
                 **kwargs):
     query, agg_name = significant_text_query(query_type(q, search_field),
                                              **kwargs)
-    r = requests.post(URL, data=json.dumps(query),
+    r = requests.post(Config.ES_ENDPOINT, data=json.dumps(query),
                       headers={'Content-Type': 'application/json'})
     aggs = r.json()['aggregations']
     buckets = aggs[agg_name]['keywords']['buckets']

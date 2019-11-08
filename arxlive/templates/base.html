@@ -21,6 +21,22 @@
       cursor: pointer;
       text-decoration: none;
   }
+  #footer {
+      font-size: 10px;
+      padding: 10px 0px;
+      position: relative;
+      margin: 0px auto;
+      text-align: justify;
+      line-height: 100%;
+  }
+  hr {
+      border: none;
+      height: 1px;
+      /* Set the hr color */
+      color: #999; /* old IE */
+      background-color: #999; /* Modern Browsers */
+  }
+  
 </style>
 {% endassets %}
 
@@ -65,5 +81,15 @@
 {% block content %}
 <div class="container">
     {% block page_content %}{% endblock %}
+
+    <div id="footer">
+      <hr>
+      <p>
+	<a href="http://www.nesta.org.uk" target="_blank">Nesta</a>
+	is an innovation foundation. We back new ideas to tackle the big challenges of our time. Nesta is a registered charity in England and Wales 1144091 and Scotland SC042833. Our main address is 58 Victoria Embankment, London, EC4Y 0DS. You can reach us by phone on 020 7438 2500 or drop us a line at <a href="mailto:information@nesta.org.uk"> information@nesta.org.uk </a>. All our work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License, unless it says otherwise. We hope you find it useful.
+      </p>
+    </div>
+
 </div>
+
 {% endblock %}

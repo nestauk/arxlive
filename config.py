@@ -6,6 +6,8 @@ class Config:
                           'text/x-font-opentype',
                           'Access-Control-Allow-Origin': '*'}}
     FLASKS3_FILEPATH_HEADERS = headers
+    ES_ENDPOINT = ("https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4."
+                   "eu-west-2.es.amazonaws.com/arxiv_v3/_search")
     SECRET_KEY = '7d441f27d441f27567d441f2b6176a'
     FLASK_ASSETS_USE_S3 = True
 
