@@ -32,12 +32,12 @@
   Hyperspecialist fields are hard to navigate.
 </h3>
 <p>
-  Broad contextually relevant searches are hard to formulate, often requiring complex 'advanced' searches and expert-driven lists of keywords. <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">'s <a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5" target="_blank">hierarXy</a> search engine  <b style="font-weight:bolder"> helps you see what you're missing</b> by explicitly performing contextual searches, so that you don't get stuck searching for rare gems; whilst the <a href="{{ url_for('keywords') }}" target="_blank">Keyword Factory</a> allows you to expand your technical vocabulary for making more expansive searches.
+  Broad contextually relevant searches are hard to formulate, often requiring complex 'advanced' searches and expert-driven lists of keywords. <img alt="arXlive" style="position: relative; top: -2px;" height="13px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}">'s <a href="{{ url_for('hierarxy') }}?sort=date_created_article_desc" target="_blank">arXlive Search</a> search engine  <b style="font-weight:bolder"> helps you see what you're missing</b> by explicitly performing contextual searches, so that you don't get stuck searching for rare gems; whilst the <a href="{{ url_for('keywords') }}" target="_blank">Keyword Factory</a> allows you to expand your technical vocabulary for making more expansive searches.
 </p>
 
 <br>
 <h2> <img alt="arXlive" style="position: relative; top: -4px;" height="25px" src="{{ url_for('static', filename='arxlive-logo-60h.png') }}"> tools</h2>
-<h3> <a href="{{ url_for('hierarxy') }}?count_citations_article[min]=5" target="_blank">HierarXy</a>: search for novel activity in arXiv articles, such as:</h3>
+<h3> <a href="{{ url_for('hierarxy') }}?sort=date_created_article_desc" target="_blank">arXlive Search</a>: search for novel activity in arXiv articles, such as:</h3>
 <ul>
   <li> <a href="{{ url_for('hierarxy') }}?q=privacy%20social%20media&count_citations_article[min]=5&cats[0][0]=Latin%20America%20and%20the%20Caribbean&sort=metric_novelty_article_desc" target="_blank"> Privacy and social media, from South American researchers, by novelty.</a></li>
   <li> <a href="{{ url_for('hierarxy') }}?q=ai%20cybersecurity&year_of_article[min]=2014&year_of_article[max]=2020&count_citations_article[min]=5&metric_novelty_article[min]=80&sort=_score_desc" target="_blank"> The most recent, most novel research in the intersection of Cybersecurity and AI.</a></li>

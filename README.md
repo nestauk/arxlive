@@ -2,7 +2,7 @@
 arXlive front end using Flask, Zappa and AWS Lambda
 
 To deploy:
-1. `yarn` from inside the `arxlive-search` directory to install javascript modules
+1. `yarn` (or `yarn build` to rebuild) from inside the `arxlive-search` directory to install javascript modules
 1. create and activate a virtual environment (conda venvs don't seem to work. `venv` is a good name as it will be ignored by git. It cannot be called `arxlive`)
 1. install requirements: `pip install -r requirements.txt`
 1. create an instance config in `instance/config.py` with `FLASKS3_BUCKET_NAME = 'name

@@ -16,7 +16,7 @@ import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v3/";
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v5/";
 
 const searchkit = new SearchkitManager(host, {
     httpHeaders:{"Content-Type":"application/json",
@@ -103,7 +103,7 @@ const HelloWorldComponent = (props)=> {
 	<div style={divStyle}>
 	  <br/>
 	  <div style={subDivStyle}>
-	    <b style={bStyle}>HierarXy</b> is a
+	    <b style={bStyle}>arXlive Search</b> is a
 	    <b style={bStyle}> contextual search engine </b> that
 	    <b style={bStyle}> expansively searches </b>
             <br/> arXiv for terms which are
@@ -159,7 +159,7 @@ class App extends Component {
 		    <RangeFilter min={-300} max={300} field="metric_novelty_article" id="metric_novelty_article" title="Novelty" showHistogram={true}/>
 		    {/* <CheckboxFilter id="booleanFlag_multinational_article" title="Has transnational organisation" label="Has transnational organisation" filter={BoolMust([RangeQuery("booleanFlag_multinational_article", {gt: false})])}/> */}
 		  <HierarchicalRefinementFilter field="json_location_article" title="Author location" id="cats"/>
-		  <HierarchicalRefinementFilter field="json_fieldOfStudy_article" title="Field of study" id="fos"/>
+		  <HierarchicalRefinementFilter field="json_fieldsOfStudy_article" title="Field of study" id="fos"/>
 		  <HierarchicalRefinementFilter field="json_category_article" title="arXiv category" id="cats2"/>
 		</SideBar>
 
