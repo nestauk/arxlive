@@ -16,14 +16,16 @@ import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v5/";
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v5/"
+// "https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com/arxiv_v5/"       
+// "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v5/";
 
-const searchkit = new SearchkitManager(host, {
-    httpHeaders:{"Content-Type":"application/json",
-		 "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
-		 "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com"
-		}
-});
+const searchkit = new SearchkitManager(host,
+                                       { httpHeaders: {"Content-Type":"application/json",
+						       "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
+						       "Es-Endpoint":"search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com"}
+                                       }
+                                      );
 
 
 const HitItem = (props)=> {
@@ -97,7 +99,7 @@ const HelloWorldComponent = (props)=> {
 
     const tinyStyle = {
 	fontSize: '12px',
-    };    
+    };
 
     return (
 	<div style={divStyle}>
@@ -106,19 +108,19 @@ const HelloWorldComponent = (props)=> {
 	    <b style={bStyle}>arXlive Search</b> is a
 	    <b style={bStyle}> contextual search engine </b> that
 	    <b style={bStyle}> expansively searches </b>
-            <br/> arXiv for terms which are
-            <b style={bStyle}> contextually similar </b>
-            to your query.
+	    <br/> arXiv for terms which are
+	    <b style={bStyle}> contextually similar </b>
+	    to your query.
 	    <br/>
-            <br/>
+	    <br/>
 	  </div>
-          Articles are
+	  Articles are
 	  <b style={bStyle}> ranked by novelty</b> to help you
 	  find <b style={bStyle}> rare gems </b> in arXiv.
-          <br/>
-          <br/>
+	  <br/>
+	  <br/>
 	  <a href="https://towardsdatascience.com/big-fast-nlp-with-elasticsearch-72ffd7ef8f2e">Read about our method here.</a>
-          <p style={tinyStyle}>Apologies to mobile users.</p>          
+	  <p style={tinyStyle}>Apologies to mobile users.</p>
 	</div>
     );
 };
@@ -137,10 +139,10 @@ class App extends Component {
 		  <SearchBox style={searchStyle}
 			     autofocus={true}
 			     searchOnChange={false}
-			     prefixQueryFields={["title_of_article^10",
-                                                 "terms_tokens_article"]}/>
-            
-            {/* "textBody_abstract_article"]}/> */}
+			     prefixQueryFields={["title_of_article",
+						 "textBody_abstract_article"]}/>
+
+	    {/* "terms_tokens_article"]}/> */}
 		</TopBar>
 
 		<HelloWorldComponent/>
