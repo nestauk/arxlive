@@ -16,10 +16,7 @@ import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 
-const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v5/"
-// "https://search-arxlive-t2brq66muzxag44zwmrcfrlmq4.eu-west-2.es.amazonaws.com/arxiv_v5/"       
-// "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v5/";
-
+const host = "https://lf3922vot1.execute-api.eu-west-2.amazonaws.com/v00/cliosearch/arxiv_v6/"
 const searchkit = new SearchkitManager(host,
                                        { httpHeaders: {"Content-Type":"application/json",
 						       "X-Api-Key":"wXLnActJhY7r0XUDIWNXc6y6tGYUUnBU1eeU7Stu",
@@ -139,10 +136,8 @@ class App extends Component {
 		  <SearchBox style={searchStyle}
 			     autofocus={true}
 			     searchOnChange={false}
-			     prefixQueryFields={["title_of_article",
-						 "textBody_abstract_article"]}/>
-
-	    {/* "terms_tokens_article"]}/> */}
+	                     prefixQueryFields={["title_of_article^10",
+						 "terms_tokens_article"]}/>
 		</TopBar>
 
 		<HelloWorldComponent/>
