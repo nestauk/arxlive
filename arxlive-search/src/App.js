@@ -136,8 +136,8 @@ class App extends Component {
 		  <SearchBox style={searchStyle}
 			     autofocus={true}
 			     searchOnChange={false}
-	                     prefixQueryFields={["title_of_article^10",
-						 "terms_tokens_article"]}/>
+	                     queryFields={["title_of_article^10",
+					   "terms_tokens_article"]}/>
 		</TopBar>
 
 		<HelloWorldComponent/>
