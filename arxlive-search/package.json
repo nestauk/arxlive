@@ -9,7 +9,7 @@
 						"bootstrap": "beta"
 			},
 			"dependencies": {
-						"moment": "^2.24.0",
+						"moment": "^2.29.4",
 						"react": "^15.6.2",
 						"react-dom": "^15.6.2",
 						"searchkit": "beta"
